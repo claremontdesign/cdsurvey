@@ -1,0 +1,32 @@
+{
+	"name": "claremontdesign/cdsurvey",
+	"description": "Claremontdesign Survey Package",
+	"license": "ClaremontDesign License",
+	"authors": [
+		{
+			"name": "Dennes B Abing",
+			"email": "dennes.b.abing@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Claremontdesign\\Cdsurvey\\": "src/"
+		},
+		"files": [
+			"src/Helpers/helpers.php"
+		]
+	},
+	"autoload-dev": {
+		"classmap": [
+			"tests/TestCase.php"
+		]
+	},
+	"minimum-stability": "dev",
+	"require": {
+		"illuminate/support": "~5",
+		"claremontdesign/cdbase": "dev-master",
+		"claremontdesign/cdbackend": "dev-master"
+	},
+	"scripts": {
+	}
+}
