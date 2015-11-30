@@ -11,7 +11,7 @@
   |
  */
 
-$factory->define(cd_config('database.surveysQuestionsAnswer.model.class'), function (Faker\Generator $faker) {
+$factory->define(cd_config('database.surveys.answer.model.class'), function (Faker\Generator $faker) {
 	$types = [
 		'text',
 		'numeric',

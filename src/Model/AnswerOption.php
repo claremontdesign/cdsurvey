@@ -49,9 +49,9 @@ class AnswerOption extends Model implements WidgetModelInterface, FilterableInte
 	 */
 	public function __construct(array $attributes = [])
 	{
-		$this->table = cd_config('database.surveysQuestionsAnswerOptions.table.name');
-		$this->primaryKey = cd_config('database.surveysQuestionsAnswerOptions.table.primary');
-		$this->fillable = cd_config('database.surveysQuestionsAnswerOptions.model.fillable');
+		$this->table = cd_config('database.surveys.answerOptions.table.name');
+		$this->primaryKey = cd_config('database.surveys.answerOptions.table.primary');
+		$this->fillable = cd_config('database.surveys.answerOptions.model.fillable');
 		parent::__construct($attributes);
 	}
 
@@ -61,7 +61,7 @@ class AnswerOption extends Model implements WidgetModelInterface, FilterableInte
 	 */
 	public function answer()
 	{
-		return $this->belongsTo(cd_config('database.surveysQuestionsAnswer.model.class'));
+		return $this->belongsTo(cd_config('database.surveys.answer.model.class'));
 	}
 
 	public function id()

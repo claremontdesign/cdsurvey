@@ -64,19 +64,19 @@ $config = [
 					],
 					'repository' => [
 						'record' => [
-							'index' => cd_config('database.surveys.table.name') . '.' . cd_config('database.surveys.table.primary'),
-							'class' => cd_config('database.surveys.model.class'),
+							'index' => cd_config('database.surveys.surveys.table.name') . '.' . cd_config('database.surveys.surveys.table.primary'),
+							'class' => cd_config('database.surveys.surveys.model.class'),
 							'repository' => [
-								'class' => cd_config('database.surveys.repository.class'),
-								'index' => cd_config('database.surveys.table.name') . '.' . cd_config('database.surveys.table.primary'),
+								'class' => cd_config('database.surveys.surveys.repository.class'),
+								'index' => cd_config('database.surveys.surveys.table.name') . '.' . cd_config('database.surveys.surveys.table.primary'),
 							]
 						],
 						'paramOne' => [
-							'index' => cd_config('database.surveysQuestions.table.name') . '.' . cd_config('database.surveysQuestions.table.primary'),
-							'class' => cd_config('database.surveysQuestions.model.class'),
+							'index' => cd_config('database.surveys.questions.table.name') . '.' . cd_config('database.surveys.questions.table.primary'),
+							'class' => cd_config('database.surveys.questions.model.class'),
 							'repository' => [
-								'class' => cd_config('database.surveysQuestions.repository.class'),
-								'index' => cd_config('database.surveysQuestions.table.name') . '.' . cd_config('database.surveysQuestions.table.primary'),
+								'class' => cd_config('database.surveys.questions.repository.class'),
+								'index' => cd_config('database.surveys.questions.table.name') . '.' . cd_config('database.surveys.questions.table.primary'),
 							]
 						],
 					],

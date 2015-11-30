@@ -19,9 +19,9 @@ class CreateSurveysQuestionsAnswerOptionsTable extends Migration
 		/**
 		 * Options of answers
 		 */
-		Schema::create(cd_config('database.surveysQuestionsAnswerOptions.table.name'), function(Blueprint $table)
+		Schema::create(cd_config('database.surveys.answerOptions.table.name'), function(Blueprint $table)
 		{
-			$table->increments(cd_config('database.surveysQuestionsAnswerOptions.table.primary'));
+			$table->increments(cd_config('database.surveys.answerOptions.table.primary'));
 			$table->integer('answer_id')->nullable();
 			$table->string('option_name')->nullable();
 			$table->string('option_value')->nullable();
@@ -38,7 +38,7 @@ class CreateSurveysQuestionsAnswerOptionsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop(cd_config('database.surveysQuestionsAnswerOptions.table.name'));
+		Schema::drop(cd_config('database.surveys.answerOptions.table.name'));
 	}
 
 }

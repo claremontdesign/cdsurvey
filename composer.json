@@ -2,6 +2,12 @@
 	"name": "claremontdesign/cdsurvey",
 	"description": "Claremontdesign Survey Package",
 	"license": "ClaremontDesign License",
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "http://claremontdesign.com/repo/"
+		}
+	],
 	"authors": [
 		{
 			"name": "Dennes B Abing",
@@ -25,7 +31,8 @@
 	"require": {
 		"illuminate/support": "~5",
 		"claremontdesign/cdbase": "dev-master",
-		"claremontdesign/cdbackend": "dev-master"
+		"claremontdesign/cdbackend": "dev-master",
+		"claremontdesign/cdcustomer": "dev-master"
 	},
 	"scripts": {
 	}

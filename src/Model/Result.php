@@ -47,9 +47,9 @@ class Result extends Model implements WidgetModelInterface, FilterableInterface,
 	 */
 	public function __construct(array $attributes = [])
 	{
-		$this->table = cd_config('database.surveysResult.table.name');
-		$this->primaryKey = cd_config('database.surveysResult.table.primary');
-		$this->fillable = cd_config('database.surveysResult.model.fillable');
+		$this->table = cd_config('database.surveys.result.table.name');
+		$this->primaryKey = cd_config('database.surveys.result.table.primary');
+		$this->fillable = cd_config('database.surveys.result.model.fillable');
 		parent::__construct($attributes);
 	}
 

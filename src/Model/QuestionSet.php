@@ -49,9 +49,9 @@ class QuestionSet extends Model implements WidgetModelInterface, FilterableInter
 	 */
 	public function __construct(array $attributes = [])
 	{
-		$this->table = cd_config('database.surveysQuestionsSet.table.name');
-		$this->primaryKey = cd_config('database.surveysQuestionsSet.table.primary');
-		$this->fillable = cd_config('database.surveysQuestionsSet.model.fillable');
+		$this->table = cd_config('database.surveys.questionSet.table.name');
+		$this->primaryKey = cd_config('database.surveys.questionSet.table.primary');
+		$this->fillable = cd_config('database.surveys.questionSet.model.fillable');
 		parent::__construct($attributes);
 	}
 
@@ -60,7 +60,7 @@ class QuestionSet extends Model implements WidgetModelInterface, FilterableInter
 	 */
 	public function survey()
 	{
-		return $this->belongsTo(cd_config('database.surveys.model.class'));
+		return $this->belongsTo(cd_config('database.surveys.surveys.model.class'));
 	}
 
 	/**
@@ -68,7 +68,7 @@ class QuestionSet extends Model implements WidgetModelInterface, FilterableInter
 	 */
 	public function questions()
 	{
-		return $this->hasMany(cd_config('database.surveysQuestions.model.class'));
+		return $this->hasMany(cd_config('database.surveys.questions.model.class'));
 	}
 
 

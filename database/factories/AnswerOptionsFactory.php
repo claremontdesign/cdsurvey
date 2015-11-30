@@ -11,7 +11,7 @@
   |
  */
 
-$factory->define(cd_config('database.surveysQuestionsAnswerOptions.model.class'), function (Faker\Generator $faker) {
+$factory->define(cd_config('database.surveys.answerOptions.model.class'), function (Faker\Generator $faker) {
 	$name = $faker->text(10);
 	return [
 		'option_name' => $name,

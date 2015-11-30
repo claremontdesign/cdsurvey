@@ -48,9 +48,9 @@ class Question extends Model implements WidgetModelInterface, FilterableInterfac
 	 */
 	public function __construct(array $attributes = [])
 	{
-		$this->table = cd_config('database.surveysQuestions.table.name');
-		$this->primaryKey = cd_config('database.surveysQuestions.table.primary');
-		$this->fillable = cd_config('database.surveysQuestions.model.fillable');
+		$this->table = cd_config('database.surveys.questions.table.name');
+		$this->primaryKey = cd_config('database.surveys.questions.table.primary');
+		$this->fillable = cd_config('database.surveys.questions.model.fillable');
 		parent::__construct($attributes);
 	}
 
@@ -59,7 +59,7 @@ class Question extends Model implements WidgetModelInterface, FilterableInterfac
 	 */
 	public function survey()
 	{
-		return $this->belongsTo(cd_config('database.surveys.model.class'));
+		return $this->belongsTo(cd_config('database.surveys.surveys.model.class'));
 	}
 
 	/**
@@ -67,7 +67,7 @@ class Question extends Model implements WidgetModelInterface, FilterableInterfac
 	 */
 	public function answers()
 	{
-		return $this->hasMany(cd_config('database.surveysQuestionsAnswer.model.class'));
+		return $this->hasMany(cd_config('database.surveys.answer.model.class'));
 	}
 
 	public function id()

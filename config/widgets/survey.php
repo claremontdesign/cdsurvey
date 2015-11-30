@@ -10,35 +10,21 @@
  * @version 0.0.0.1
  * @since Nov 7, 2015 1:25:03 PM
  * @file config.php
- * @project Cdbackend
+ * @project Cdsurvey
  */
 return [
-	/**
-	 * Collection of Widgets that this module is offered
-	 * each widget is a content on itself.
-	 * a datatable, a form, a button
-	 * each is an instanceof /Widget/WidgetInterface
-	 * AttributableInterface, ConfigurableInterface, AccessibleInterface, ViewableInterface,
-	 * 		Modelable,
-	 */
 	'widgets' => [
-		'einkspreadSurvey' => [
+		'survey' => [
 			'access' => 'guest',
 			'enable' => true,
 			'type' => 'survey',
 			'messages' => [
 				'empty' => [
-					'empty' => 'No data found.',
-					'notfound' => 'Cannot find the record/s you are looking for. Kindly try again.'
+					'empty' => 'No Surveys  found.',
+					'notfound' => 'Cannot find the survey/s you are looking for. Kindly try again.'
 				],
 			],
 			'config' => [
-				'attributes' => [
-					'recordName' => [
-						'singular' => 'Survey',
-						'plural' => 'Surveys'
-					],
-				],
 				'questions' => [
 					/**
 					 * Use set of questions instead of displaying each quests
@@ -52,45 +38,45 @@ return [
 			],
 			'models' => [
 				'survey' => [
-					'primaryKey' => cd_config('database.surveys.table.primary'),
-					'class' => cd_config('database.surveys.model.class'),
+					'primaryKey' => cd_config('database.surveys.surveys.table.primary'),
+					'class' => cd_config('database.surveys.surveys.model.class'),
 					'repository' => [
-						'class' => cd_config('database.surveys.repository.class')
+						'class' => cd_config('database.surveys.surveys.repository.class')
 					],
 				],
 				'questions' => [
-					'primaryKey' => cd_config('database.surveysQuestions.table.primary'),
-					'class' => cd_config('database.surveysQuestions.model.class'),
+					'primaryKey' => cd_config('database.surveys.questions.table.primary'),
+					'class' => cd_config('database.surveys.questions.model.class'),
 					'repository' => [
-						'class' => cd_config('database.surveysQuestions.repository.class')
+						'class' => cd_config('database.surveys.questions.repository.class')
 					],
 				],
 				'questionsSet' => [
-					'primaryKey' => cd_config('database.surveysQuestionsSet.table.primary'),
-					'class' => cd_config('database.surveysQuestionsSet.model.class'),
+					'primaryKey' => cd_config('database.surveys.questionSet.table.primary'),
+					'class' => cd_config('database.surveys.questionSet.model.class'),
 					'repository' => [
-						'class' => cd_config('database.surveysQuestionsSet.repository.class')
+						'class' => cd_config('database.surveys.questionSet.repository.class')
 					],
 				],
 				'answers' => [
-					'primaryKey' => cd_config('database.surveysQuestionsAnswer.table.primary'),
-					'class' => cd_config('database.surveysQuestionsAnswer.model.class'),
+					'primaryKey' => cd_config('database.surveys.answer.table.primary'),
+					'class' => cd_config('database.surveys.answer.model.class'),
 					'repository' => [
-						'class' => cd_config('database.surveysQuestionsAnswer.repository.class')
+						'class' => cd_config('database.surveys.answer.repository.class')
 					],
 				],
 				'answerOptions' => [
-					'primaryKey' => cd_config('database.surveysQuestionsAnswerOptions.table.primary'),
-					'class' => cd_config('database.surveysQuestionsAnswerOptions.model.class'),
+					'primaryKey' => cd_config('database.surveys.answerOptions.table.primary'),
+					'class' => cd_config('database.surveys.answerOptions.model.class'),
 					'repository' => [
-						'class' => cd_config('database.surveysQuestionsAnswerOptions.repository.class')
+						'class' => cd_config('database.surveys.answerOptions.repository.class')
 					],
 				],
 				'result' => [
-					'primaryKey' => cd_config('database.surveysResult.table.primary'),
-					'class' => cd_config('database.surveysResult.model.class'),
+					'primaryKey' => cd_config('database.surveys.result.table.primary'),
+					'class' => cd_config('database.surveys.result.model.class'),
 					'repository' => [
-						'class' => cd_config('database.surveysResult.repository.class')
+						'class' => cd_config('database.surveys.result.repository.class')
 					],
 				]
 			],

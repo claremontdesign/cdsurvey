@@ -118,14 +118,14 @@ return [
 					 * default to columnIndex
 					 */
 					'enable' => false,
-					'index' => cd_config('database.surveysQuestionsAnswer.table.primary'),
+					'index' => cd_config('database.surveys.answer.table.primary'),
 					'filter' => [
 						'enable' => true,
-						'index' => cd_config('database.surveysQuestionsAnswer.table.name') . '.' . cd_config('database.surveysQuestionsAnswer.table.primary')
+						'index' => cd_config('database.surveys.answer.table.name') . '.' . cd_config('database.surveys.answer.table.primary')
 					],
 					'sort' => [
 						'enable' => true,
-						'index' => cd_config('database.surveysQuestionsAnswer.table.name') . '.' . cd_config('database.surveysQuestionsAnswer.table.primary')
+						'index' => cd_config('database.surveys.answer.table.name') . '.' . cd_config('database.surveys.answer.table.primary')
 					],
 					/**
 					 * Type of column
@@ -236,9 +236,9 @@ return [
 				 * value to pass from page to page, default to model primary key
 				 */
 				'value' => [
-					'index' => cd_config('database.surveysQuestionsAnswer.table.primary')
+					'index' => cd_config('database.surveys.answer.table.primary')
 				],
-				'class' => cd_config('database.surveysQuestionsAnswer.model.class'),
+				'class' => cd_config('database.surveys.answer.model.class'),
 				'repository' => [
 					/**
 					 * Default sorting
@@ -248,7 +248,7 @@ return [
 					 * Records to view per page
 					 */
 					'rowsPerPage' => 20,
-					'class' => cd_config('database.surveysQuestionsAnswer.repository.class')
+					'class' => cd_config('database.surveys.answer.repository.class')
 				],
 			],
 		]

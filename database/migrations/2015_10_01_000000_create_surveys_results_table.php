@@ -19,9 +19,9 @@ class CreateSurveysResultsTable extends Migration
 		/**
 		 * Customers
 		 */
-		Schema::create(cd_config('database.surveysResult.table.name'), function(Blueprint $table)
+		Schema::create(cd_config('database.surveys.result.table.name'), function(Blueprint $table)
 		{
-			$table->increments(cd_config('database.surveysResult.table.primary'));
+			$table->increments(cd_config('database.surveys.result.table.primary'));
 			$table->integer('survey_id')->nullable();
 			$table->integer('customer_id')->nullable();
 			$table->integer('question_id')->nullable();
@@ -41,7 +41,7 @@ class CreateSurveysResultsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop(cd_config('database.surveysResult.table.name'));
+		Schema::drop(cd_config('database.surveys.result.table.name'));
 	}
 
 }

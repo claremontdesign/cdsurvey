@@ -199,9 +199,9 @@ return [
 							'options' => [
 								'callback' => [
 									'model' => [
-										'class' => cd_config('database.surveysQuestionsSet.model.class'),
+										'class' => cd_config('database.surveys.questionSet.model.class'),
 										'repository' => [
-											'class' => cd_config('database.surveysQuestionsSet.repository.class'),
+											'class' => cd_config('database.surveys.questionSet.repository.class'),
 											'method' => 'getSetForDropdown',
 										],
 									],
@@ -218,12 +218,12 @@ return [
 					 * 	to use extract the value that will be passed from page to page
 					 * @see WidgetType\Form::valueIndex()
 					 */
-					'index' => cd_config('database.surveysQuestions.table.primary')
+					'index' => cd_config('database.surveys.questions.table.primary')
 				],
-				'class' => cd_config('database.surveysQuestions.model.class'),
+				'class' => cd_config('database.surveys.questions.model.class'),
 				'repository' => [
-					'class' => cd_config('database.surveysQuestions.repository.class'),
-					'index' => cd_config('database.surveysQuestions.table.name') . '.' . cd_config('database.surveysQuestions.table.primary'),
+					'class' => cd_config('database.surveys.questions.repository.class'),
+					'index' => cd_config('database.surveys.questions.table.name') . '.' . cd_config('database.surveys.questions.table.primary'),
 				],
 				'crud' => [
 					'duplicate' => [

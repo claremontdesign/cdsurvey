@@ -19,9 +19,9 @@ class CreateSurveysQuestionsAnswerTypeTable extends Migration
 		/**
 		 * Questions can have multiple type of answers to be filled.
 		 */
-		Schema::create(cd_config('database.surveysQuestionsAnswer.table.name'), function(Blueprint $table)
+		Schema::create(cd_config('database.surveys.answer.table.name'), function(Blueprint $table)
 		{
-			$table->increments(cd_config('database.surveysQuestionsAnswer.table.primary'));
+			$table->increments(cd_config('database.surveys.answer.table.primary'));
 			$table->integer('question_id')->nullable();
 			$table->string('label')->nullable();
 			$table->text('description')->nullable();
@@ -40,7 +40,7 @@ class CreateSurveysQuestionsAnswerTypeTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop(cd_config('database.surveysQuestionsAnswer.table.name'));
+		Schema::drop(cd_config('database.surveys.answer.table.name'));
 	}
 
 }

@@ -48,11 +48,11 @@ $config = [
 					],
 					'repository' => [
 						'record' => [
-							'index' => cd_config('database.surveys.table.name') . '.' . cd_config('database.surveys.table.primary'),
-							'class' => cd_config('database.surveys.model.class'),
+							'index' => cd_config('database.surveys.surveys.table.name') . '.' . cd_config('database.surveys.surveys.table.primary'),
+							'class' => cd_config('database.surveys.surveys.model.class'),
 							'repository' => [
-								'class' => cd_config('database.surveys.repository.class'),
-								'index' => cd_config('database.surveys.table.name') . '.' . cd_config('database.surveys.table.primary'),
+								'class' => cd_config('database.surveys.surveys.repository.class'),
+								'index' => cd_config('database.surveys.surveys.table.name') . '.' . cd_config('database.surveys.surveys.table.primary'),
 							]
 						],
 					],

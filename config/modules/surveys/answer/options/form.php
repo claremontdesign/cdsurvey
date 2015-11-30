@@ -184,12 +184,12 @@ return [
 					 * 	to use extract the value that will be passed from page to page
 					 * @see WidgetType\Form::valueIndex()
 					 */
-					'index' => cd_config('database.surveysQuestionsAnswerOptions.table.primary')
+					'index' => cd_config('database.surveys.answerOptions.table.primary')
 				],
-				'class' => cd_config('database.surveysQuestionsAnswerOptions.model.class'),
+				'class' => cd_config('database.surveys.answerOptions.model.class'),
 				'repository' => [
-					'class' => cd_config('database.surveysQuestionsAnswerOptions.repository.class'),
-					'index' => cd_config('database.surveysQuestionsAnswerOptions.table.name') . '.' . cd_config('database.surveysQuestionsAnswerOptions.table.primary'),
+					'class' => cd_config('database.surveys.answerOptions.repository.class'),
+					'index' => cd_config('database.surveys.answerOptions.table.name') . '.' . cd_config('database.surveys.answerOptions.table.primary'),
 				],
 				'crud' => [
 					'duplicate' => [

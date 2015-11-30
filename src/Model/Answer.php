@@ -48,9 +48,9 @@ class Answer extends Model implements ActionModelInterface, WidgetModelInterface
 	 */
 	public function __construct(array $attributes = [])
 	{
-		$this->table = cd_config('database.surveysQuestionsAnswer.table.name');
-		$this->primaryKey = cd_config('database.surveysQuestionsAnswer.table.primary');
-		$this->fillable = cd_config('database.surveysQuestionsAnswer.model.fillable');
+		$this->table = cd_config('database.surveys.answer.table.name');
+		$this->primaryKey = cd_config('database.surveys.answer.table.primary');
+		$this->fillable = cd_config('database.surveys.answer.model.fillable');
 		$this->timestamps = false;
 		parent::__construct($attributes);
 	}
@@ -61,7 +61,7 @@ class Answer extends Model implements ActionModelInterface, WidgetModelInterface
 	 */
 	public function question()
 	{
-		return $this->belongsTo(cd_config('database.surveysQuestions.model.class'));
+		return $this->belongsTo(cd_config('database.surveys.questions.model.class'));
 	}
 
 	/**
@@ -69,7 +69,7 @@ class Answer extends Model implements ActionModelInterface, WidgetModelInterface
 	 */
 	public function options()
 	{
-		return $this->hasMany(cd_config('database.surveysQuestionsAnswerOptions.model.class'));
+		return $this->hasMany(cd_config('database.surveys.answerOptions.model.class'));
 	}
 
 	// </editor-fold>

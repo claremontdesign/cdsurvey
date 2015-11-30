@@ -109,14 +109,14 @@ return [
 					 * 	include the DB column prefix
 					 * default to columnIndex
 					 */
-					'index' => cd_config('database.surveys.table.primary'),
+					'index' => cd_config('database.surveys.surveys.table.primary'),
 					'filter' => [
 						'enable' => true,
-						'index' => cd_config('database.surveys.table.name') . '.' . cd_config('database.surveys.table.primary')
+						'index' => cd_config('database.surveys.surveys.table.name') . '.' . cd_config('database.surveys.surveys.table.primary')
 					],
 					'sort' => [
 						'enable' => true,
-						'index' => cd_config('database.surveys.table.name') . '.' . cd_config('database.surveys.table.primary')
+						'index' => cd_config('database.surveys.surveys.table.name') . '.' . cd_config('database.surveys.surveys.table.primary')
 					],
 					/**
 					 * Type of column
@@ -184,7 +184,7 @@ return [
 					'enable' => true,
 					'filter' => [
 						'enable' => true,
-						'index' => cd_config('database.surveys.table.name') . '.status'
+						'index' => cd_config('database.surveys.surveys.table.name') . '.status'
 					],
 					'ui' => [
 						'html' => [
@@ -206,7 +206,7 @@ return [
 					],
 					'filter' => [
 						'enable' => true,
-						'index' => cd_config('database.surveys.table.name') . '.start_at'
+						'index' => cd_config('database.surveys.surveys.table.name') . '.start_at'
 					],
 					'sort' => [
 						'enable' => true,
@@ -221,7 +221,7 @@ return [
 					],
 					'filter' => [
 						'enable' => true,
-						'index' => cd_config('database.surveys.table.name') . '.end_at'
+						'index' => cd_config('database.surveys.surveys.table.name') . '.end_at'
 					],
 					'sort' => [
 						'enable' => true,
@@ -236,7 +236,7 @@ return [
 					],
 					'filter' => [
 						'enable' => true,
-						'index' => cd_config('database.surveys.table.name') . '.created_at'
+						'index' => cd_config('database.surveys.surveys.table.name') . '.created_at'
 					],
 					'sort' => [
 						'enable' => true,
@@ -254,7 +254,7 @@ return [
 					],
 					'filter' => [
 						'enable' => true,
-						'index' => cd_config('database.surveys.table.name') . '.created_at'
+						'index' => cd_config('database.surveys.surveys.table.name') . '.created_at'
 					],
 				],
 			],
@@ -263,9 +263,9 @@ return [
 				 * value to pass from page to page, default to model primary key
 				 */
 				'value' => [
-					'index' => cd_config('database.surveys.table.primary')
+					'index' => cd_config('database.surveys.surveys.table.primary')
 				],
-				'class' => cd_config('database.surveys.model.class'),
+				'class' => cd_config('database.surveys.surveys.model.class'),
 				'repository' => [
 					/**
 					 * Default sorting
@@ -275,7 +275,7 @@ return [
 					 * Records to view per page
 					 */
 					'rowsPerPage' => 20,
-					'class' => cd_config('database.surveys.repository.class')
+					'class' => cd_config('database.surveys.surveys.repository.class')
 				],
 			],
 		]

@@ -19,9 +19,9 @@ class CreateSurveysTable extends Migration
 		/**
 		 * Customers
 		 */
-		Schema::create(cd_config('database.surveys.table.name'), function(Blueprint $table)
+		Schema::create(cd_config('database.surveys.surveys.table.name'), function(Blueprint $table)
 		{
-			$table->increments(cd_config('database.surveys.table.primary'));
+			$table->increments(cd_config('database.surveys.surveys.table.primary'));
 			$table->string('title')->nullable();
 			$table->text('description')->nullable();
 			$table->boolean('status')->nullable();
@@ -39,7 +39,7 @@ class CreateSurveysTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop(cd_config('database.surveys.table.name'));
+		Schema::drop(cd_config('database.surveys.surveys.table.name'));
 	}
 
 }
