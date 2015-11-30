@@ -23,10 +23,14 @@ interface QuestionInterface
 	 */
 	public function survey();
 
+	public function getSurvey();
+
 	/**
 	 * Each question has answers
 	 */
 	public function answers();
+
+	public function getAnswers();
 
 	/**
 	 * The ID
@@ -34,7 +38,12 @@ interface QuestionInterface
 	public function id();
 
 	/**
-	 * Question Title
+	 * Question
 	 */
-	public function title();
+	public function question();
+
+	/**
+	 * Note
+	 */
+	public function note();
 }

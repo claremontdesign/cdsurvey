@@ -31,8 +31,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Claremontdesign\Cdbase\Widgets\ModelInterface as WidgetModelInterface;
 use Claremontdesign\Cdbase\Widgets\WidgetTypes\WidgetTypeInterface;
 use Claremontdesign\Cdbase\Widgets\WidgetTypes\ActionModelInterface;
+use Claremontdesign\Cdsurvey\Model\Contracts\AnswerInterface as ModelAnswerInterface;
 
-class Answer extends Model implements ActionModelInterface, WidgetModelInterface, FilterableInterface, JoinableInterface, SortableInterface
+class Answer extends Model implements ActionModelInterface, WidgetModelInterface, FilterableInterface, JoinableInterface, SortableInterface, ModelAnswerInterface
 {
 
 	use Filterable,
@@ -79,6 +80,16 @@ class Answer extends Model implements ActionModelInterface, WidgetModelInterface
 		return $this->answer_id;
 	}
 
+	public function label()
+	{
+		return $this->label;
+	}
+
+	public function type()
+	{
+		return $this->answer_type;
+	}
+
 	/**
 	 * Check if type has options
 	 * @return boolean
@@ -86,7 +97,7 @@ class Answer extends Model implements ActionModelInterface, WidgetModelInterface
 	public function optionable()
 	{
 		$withOptions = ['checkbox', 'dropdownselect', 'radioselect', 'multipleselect'];
-		return in_array($this->answer_type, $withOptions);
+		return in_array($this->type(), $withOptions);
 	}
 
 	// <editor-fold defaultstate="collapsed" desc="WIDGET">

@@ -30,9 +30,9 @@ use Claremontdesign\Cdbase\Model\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Claremontdesign\Cdbase\Widgets\ModelInterface as WidgetModelInterface;
 use Claremontdesign\Cdbase\Widgets\WidgetTypes\WidgetTypeInterface;
-//use Claremontdesign\Cdsurvey\Model\Contracts\QuestionInterface as QuestionModelInterface;
+use Claremontdesign\Cdsurvey\Model\Contracts\QuestionInterface as ModelQuestionInterface;
 
-class Question extends Model implements WidgetModelInterface, FilterableInterface, JoinableInterface, SortableInterface
+class Question extends Model implements WidgetModelInterface, FilterableInterface, JoinableInterface, SortableInterface, ModelQuestionInterface
 {
 
 	use Filterable,
@@ -63,6 +63,15 @@ class Question extends Model implements WidgetModelInterface, FilterableInterfac
 	}
 
 	/**
+	 * REturn the Survey object
+	 * @return type
+	 */
+	public function getSurvey()
+	{
+		return $this->survey()->get();
+	}
+
+	/**
 	 * Each questions can have multiple answers
 	 */
 	public function answers()
@@ -70,9 +79,27 @@ class Question extends Model implements WidgetModelInterface, FilterableInterfac
 		return $this->hasMany(cd_config('database.surveys.answer.model.class'));
 	}
 
+	public function getAnswers()
+	{
+		return $this->answers()->get();
+	}
+
 	public function id()
 	{
 		return $this->question_id;
+	}
+
+	/**
+	 * The Question
+	 */
+	public function question()
+	{
+		return $this->title;
+	}
+
+	public function note()
+	{
+		return $this->description;
 	}
 
 	// <editor-fold defaultstate="collapsed" desc="WIDGET">

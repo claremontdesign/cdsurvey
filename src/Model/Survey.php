@@ -30,9 +30,9 @@ use Claremontdesign\Cdbase\Model\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Claremontdesign\Cdbase\Widgets\ModelInterface as WidgetModelInterface;
 use Claremontdesign\Cdbase\Widgets\WidgetTypes\WidgetTypeInterface;
-//use Claremontdesign\Cdsurvey\Model\Contracts\SurveyInterface as SurveyModelInterface;
+use Claremontdesign\Cdsurvey\Model\Contracts\SurveyInterface as ModelSurveyInterface;
 
-class Survey extends Model implements WidgetModelInterface, FilterableInterface, JoinableInterface, SortableInterface
+class Survey extends Model implements WidgetModelInterface, FilterableInterface, JoinableInterface, SortableInterface, ModelSurveyInterface
 {
 
 	use Filterable,

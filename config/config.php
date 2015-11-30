@@ -4,7 +4,7 @@ return [
 	'widgets' => [
 		'classes' => [
 			'survey' => [
-				'class' => \Claremontdesign\Cdbase\Widgets\WidgetTypes\Form::class
+				'class' => \Claremontdesign\Cdsurvey\Widgets\WidgetTypes\Survey::class
 			],
 		],
 	],

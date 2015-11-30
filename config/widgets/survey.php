@@ -24,20 +24,15 @@ return [
 					'notfound' => 'Cannot find the survey/s you are looking for. Kindly try again.'
 				],
 			],
-			'config' => [
-				'questions' => [
-					/**
-					 * Use set of questions instead of displaying each quests
-					 * if true, questions will be displayed by set and not by questions
-					 */
-					'set' => true,
-					'display' => [
-						'questionsPerPage' => 1,
-					],
-				],
+			'questions' => [
+				/**
+				 * Use set of questions instead of displaying each quests
+				 * if true, questions will be displayed by set and not by questions
+				 */
+				'set' => false
 			],
 			'models' => [
-				'survey' => [
+				'surveys' => [
 					'primaryKey' => cd_config('database.surveys.surveys.table.primary'),
 					'class' => cd_config('database.surveys.surveys.model.class'),
 					'repository' => [
@@ -48,6 +43,7 @@ return [
 					'primaryKey' => cd_config('database.surveys.questions.table.primary'),
 					'class' => cd_config('database.surveys.questions.model.class'),
 					'repository' => [
+						'perpage' => 1,
 						'class' => cd_config('database.surveys.questions.repository.class')
 					],
 				],
@@ -55,6 +51,7 @@ return [
 					'primaryKey' => cd_config('database.surveys.questionSet.table.primary'),
 					'class' => cd_config('database.surveys.questionSet.model.class'),
 					'repository' => [
+						'perpage' => 1,
 						'class' => cd_config('database.surveys.questionSet.repository.class')
 					],
 				],

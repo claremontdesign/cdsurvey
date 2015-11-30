@@ -34,7 +34,8 @@ interface AnswerInterface
 	public function id();
 
 	/**
-	 * Question Title
+	 * Question Label
 	 */
-	public function title();
+	public function label();
+	public function type();
 }
