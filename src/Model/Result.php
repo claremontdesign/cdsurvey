@@ -58,6 +58,16 @@ class Result extends Model implements WidgetModelInterface, FilterableInterface,
 		return $this->result_id;
 	}
 
+	public function survey()
+	{
+		return $this->belongsTo(cd_config('database.surveys.surveys.model.class'));
+	}
+
+	public function answers()
+	{
+		return $this->hasMany(cd_config('database.surveys.resultAnswers.model.class'));
+	}
+
 	// <editor-fold defaultstate="collapsed" desc="WIDGET">
 	/**
 	 * Check widget access

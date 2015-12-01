@@ -30,8 +30,9 @@ use Claremontdesign\Cdbase\Model\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Claremontdesign\Cdbase\Widgets\ModelInterface as WidgetModelInterface;
 use Claremontdesign\Cdbase\Widgets\WidgetTypes\WidgetTypeInterface;
+use Claremontdesign\Cdsurvey\Model\Contracts\AnswerOptionsInterface;
 
-class AnswerOption extends Model implements WidgetModelInterface, FilterableInterface, JoinableInterface, SortableInterface
+class AnswerOption extends Model implements WidgetModelInterface, FilterableInterface, JoinableInterface, SortableInterface, AnswerOptionsInterface
 {
 
 	use Filterable,
@@ -55,7 +56,6 @@ class AnswerOption extends Model implements WidgetModelInterface, FilterableInte
 		parent::__construct($attributes);
 	}
 
-
 	/**
 	 * Each option can only have one answer
 	 */
@@ -67,6 +67,16 @@ class AnswerOption extends Model implements WidgetModelInterface, FilterableInte
 	public function id()
 	{
 		return $this->option_id;
+	}
+
+	public function label()
+	{
+		return $this->option_name;
+	}
+
+	public function value()
+	{
+		return $this->option_value;
 	}
 
 	public function setUpdatedAt($value)

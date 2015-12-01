@@ -15,6 +15,8 @@ namespace Claremontdesign\Cdsurvey\Model\Contracts;
  * @project Cdbase
  * @package Cdsurvey
  */
+use Claremontdesign\Cdbase\Form\Contracts\ElementInterface;
+
 interface AnswerInterface
 {
 
@@ -37,5 +39,18 @@ interface AnswerInterface
 	 * Question Label
 	 */
 	public function label();
+
 	public function type();
+
+	/**
+	 * Set the Element
+	 * @param ElementInterface $element
+	 */
+	public function setElement(ElementInterface $element);
+
+	/**
+	 * Return the Element
+	 * @return ElementInterface
+	 */
+	public function element();
 }

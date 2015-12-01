@@ -30,9 +30,8 @@ use Claremontdesign\Cdbase\Model\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Claremontdesign\Cdbase\Widgets\ModelInterface as WidgetModelInterface;
 use Claremontdesign\Cdbase\Widgets\WidgetTypes\WidgetTypeInterface;
-use Claremontdesign\Cdsurvey\Model\Contracts\SurveyInterface as ModelSurveyInterface;
 
-class Survey extends Model implements WidgetModelInterface, FilterableInterface, JoinableInterface, SortableInterface, ModelSurveyInterface
+class ResultAnswers extends Model implements WidgetModelInterface, FilterableInterface, JoinableInterface, SortableInterface
 {
 
 	use Filterable,
@@ -48,46 +47,23 @@ class Survey extends Model implements WidgetModelInterface, FilterableInterface,
 	 */
 	public function __construct(array $attributes = [])
 	{
-		$this->table = cd_config('database.surveys.surveys.table.name');
-		$this->primaryKey = cd_config('database.surveys.surveys.table.primary');
-		$this->fillable = cd_config('database.surveys.surveys.model.fillable');
+		$this->table = cd_config('database.surveys.resultAnswers.table.name');
+		$this->primaryKey = cd_config('database.surveys.resultAnswers.table.primary');
+		$this->fillable = cd_config('database.surveys.resultAnswers.model.fillable');
 		parent::__construct($attributes);
-	}
-
-	/**
-	 * Each survey has many questions
-	 */
-	public function questions()
-	{
-		return $this->hasMany(cd_config('database.surveys.questions.model.class'));
-	}
-
-	public function results()
-	{
-		return $this->hasMany(cd_config('database.surveys.result.model.class'));
 	}
 
 	public function id()
 	{
-		return $this->survey_id;
+		return $this->result_answer_id;
 	}
 
 	/**
-	 * Survey Title
-	 * @return type
+	 * Each question has one survey
 	 */
-	public function title()
+	public function result()
 	{
-		return $this->title;
-	}
-
-	/**
-	 * Survey Title
-	 * @return type
-	 */
-	public function description()
-	{
-		return $this->description;
+		return $this->belongsTo(cd_config('database.surveys.result.model.class'));
 	}
 
 	// <editor-fold defaultstate="collapsed" desc="WIDGET">
@@ -132,10 +108,6 @@ class Survey extends Model implements WidgetModelInterface, FilterableInterface,
 	 */
 	public function fixValueToColumnValue($assocArray)
 	{
-		if(empty($assocArray['start_at']))
-		{
-			$assocArray['start_at'] = date('Y-m-d');
-		}
 		return parent::fixValueToColumnValue($assocArray);
 	}
 

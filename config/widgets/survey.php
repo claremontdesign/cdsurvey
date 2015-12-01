@@ -43,7 +43,7 @@ return [
 					'primaryKey' => cd_config('database.surveys.questions.table.primary'),
 					'class' => cd_config('database.surveys.questions.model.class'),
 					'repository' => [
-						'perpage' => 1,
+						'perpage' => 2,
 						'class' => cd_config('database.surveys.questions.repository.class')
 					],
 				],
@@ -74,6 +74,13 @@ return [
 					'class' => cd_config('database.surveys.result.model.class'),
 					'repository' => [
 						'class' => cd_config('database.surveys.result.repository.class')
+					],
+				],
+				'resultAnswers' => [
+					'primaryKey' => cd_config('database.surveys.resultAnswers.table.primary'),
+					'class' => cd_config('database.surveys.resultAnswers.model.class'),
+					'repository' => [
+						'class' => cd_config('database.surveys.resultAnswers.repository.class')
 					],
 				]
 			],

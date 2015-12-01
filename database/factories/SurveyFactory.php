@@ -15,7 +15,7 @@ $factory->define(cd_config('database.surveys.surveys.model.class'), function (Fa
 	return [
 		'title' => $faker->text(50),
 		'description' => $faker->text(150),
-		'status' => $faker->numberBetween(0, 1),
+		'status' => 1,
 		'start_at' => $faker->date('Y-m-d'),
 		'end_at' => $faker->date('Y-m-d'),
 		'created_at' => $faker->date('Y-m-d'),

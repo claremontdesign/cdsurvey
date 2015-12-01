@@ -41,6 +41,11 @@ class Question extends Model implements WidgetModelInterface, FilterableInterfac
 	 Sortable;
 
 	/**
+	 * Prepared Answers
+	 */
+	protected $preparedAnswers = [];
+
+	/**
 	 * Create a new Eloquent model instance.
 	 *
 	 * @param  array  $attributes
@@ -51,6 +56,7 @@ class Question extends Model implements WidgetModelInterface, FilterableInterfac
 		$this->table = cd_config('database.surveys.questions.table.name');
 		$this->primaryKey = cd_config('database.surveys.questions.table.primary');
 		$this->fillable = cd_config('database.surveys.questions.model.fillable');
+		$this->preparedAnswers = collect($this->preparedAnswers);
 		parent::__construct($attributes);
 	}
 
@@ -60,6 +66,11 @@ class Question extends Model implements WidgetModelInterface, FilterableInterfac
 	public function survey()
 	{
 		return $this->belongsTo(cd_config('database.surveys.surveys.model.class'));
+	}
+
+	public function results()
+	{
+		return $this->hasMany(cd_config('database.surveys.result.model.class'));
 	}
 
 	/**
@@ -79,9 +90,22 @@ class Question extends Model implements WidgetModelInterface, FilterableInterfac
 		return $this->hasMany(cd_config('database.surveys.answer.model.class'));
 	}
 
+	/**
+	 *
+	 * @return Collection
+	 */
 	public function getAnswers()
 	{
-		return $this->answers()->get();
+		return $this->answers()->where('status', 1)->get();
+	}
+
+	/**
+	 * Return PreparedAnswers
+	 * @return Collection
+	 */
+	public function preparedAnswers()
+	{
+		return $this->preparedAnswers;
 	}
 
 	public function id()
@@ -95,6 +119,15 @@ class Question extends Model implements WidgetModelInterface, FilterableInterfac
 	public function question()
 	{
 		return $this->title;
+	}
+
+	/**
+	 * Check if this has a note
+	 * @return boolean
+	 */
+	public function hasNote()
+	{
+		return !empty($this->description);
 	}
 
 	public function note()

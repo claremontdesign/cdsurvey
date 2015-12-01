@@ -126,6 +126,12 @@ return [
 							'label' => 'Label',
 							'placeholder' => 'Label'
 						],
+						'validation' => [
+							'required' => [
+								'enable' => true,
+								'message' => 'Label is required.'
+							],
+						],
 					],
 					'description' => [
 						'enable' => true,

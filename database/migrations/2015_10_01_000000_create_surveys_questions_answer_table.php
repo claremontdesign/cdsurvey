@@ -6,7 +6,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSurveysQuestionsAnswerTypeTable extends Migration
+class CreateSurveysQuestionsAnswerTable extends Migration
 {
 
 	/**

@@ -16,7 +16,7 @@ $factory->define(cd_config('database.surveys.answerOptions.model.class'), functi
 	return [
 		'option_name' => $name,
 		'option_value' => $name,
-		'status' => rand(1, 0),
+		'status' => 1,
 		'position' => rand(1, 20),
 	];
 });

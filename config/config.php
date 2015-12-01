@@ -8,7 +8,30 @@ return [
 			],
 		],
 	],
-	// database.surveys.answerOptions.
+	'controllers' => [
+		'survey' => [
+			'class' => Claremontdesign\Cdsurvey\Http\Controllers\SurveyController::class,
+			'enable' => true
+		],
+	],
+	'routes' => [
+		'survey' => [
+			'controller' => 'survey',
+			'method' => 'index',
+			'requestMethods' => ['get', 'post'],
+			'url' => '/survey',
+			'enable' => true
+		],
+	],
+	'nav' => [
+		'front' => [
+			'survey' => [
+				'anchor' => 'Survey',
+				'url' => '/survey',
+				'enable' => true
+			],
+		],
+	],
 	'database' => [
 		'surveys' => [
 			'surveys' => [
@@ -31,10 +54,23 @@ return [
 				],
 				'model' => [
 					'class' => Claremontdesign\Cdsurvey\Model\Result::class,
-					'fillable' => ['survey_id', 'customer_id', 'question_id', 'answer', 'start_at', 'end_at'],
+					'fillable' => ['survey_id', 'customer_id', 'start_at', 'end_at', 'status', 'is_new', 'ip_address'],
 				],
 				'repository' => [
 					'class' => Claremontdesign\Cdsurvey\Model\Repository\Result::class
+				]
+			],
+			'resultAnswers' => [
+				'table' => [
+					'name' => 'surveys_result_answers',
+					'primary' => 'result_answer_id',
+				],
+				'model' => [
+					'class' => Claremontdesign\Cdsurvey\Model\ResultAnswers::class,
+					'fillable' => ['question_id', 'answer_id', 'answer', 'result_id'],
+				],
+				'repository' => [
+					'class' => Claremontdesign\Cdsurvey\Model\Repository\ResultAnswer::class
 				]
 			],
 			'questions' => [

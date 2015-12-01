@@ -24,11 +24,11 @@ class CreateSurveysResultsTable extends Migration
 			$table->increments(cd_config('database.surveys.result.table.primary'));
 			$table->integer('survey_id')->nullable();
 			$table->integer('customer_id')->nullable();
-			$table->integer('question_id')->nullable();
-			$table->string('answer')->nullable();
 			$table->boolean('status')->nullable();
+			$table->boolean('is_new')->nullable();
 			$table->date('start_at');
 			$table->date('end_at');
+			$table->string('ip_address');
 			$table->timestamps();
 			$table->softDeletes();
 		});

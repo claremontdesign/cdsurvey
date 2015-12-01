@@ -32,6 +32,7 @@ use Claremontdesign\Cdbase\Widgets\ModelInterface as WidgetModelInterface;
 use Claremontdesign\Cdbase\Widgets\WidgetTypes\WidgetTypeInterface;
 use Claremontdesign\Cdbase\Widgets\WidgetTypes\ActionModelInterface;
 use Claremontdesign\Cdsurvey\Model\Contracts\AnswerInterface as ModelAnswerInterface;
+use Claremontdesign\Cdbase\Form\Contracts\ElementInterface;
 
 class Answer extends Model implements ActionModelInterface, WidgetModelInterface, FilterableInterface, JoinableInterface, SortableInterface, ModelAnswerInterface
 {
@@ -40,6 +41,12 @@ class Answer extends Model implements ActionModelInterface, WidgetModelInterface
 	 SoftDeletes,
 	 Joinable,
 	 Sortable;
+
+	/**
+	 * The Form Element
+	 * @var ElementInterface
+	 */
+	protected $element = null;
 
 	/**
 	 * Create a new Eloquent model instance.
@@ -73,6 +80,16 @@ class Answer extends Model implements ActionModelInterface, WidgetModelInterface
 		return $this->hasMany(cd_config('database.surveys.answerOptions.model.class'));
 	}
 
+	/**
+	 * REturn the Options
+	 * @param boolean $enabled Return all enabled only
+	 * @return Collection
+	 */
+	public function getOptions($enabled = true)
+	{
+		return $this->options()->get();
+	}
+
 	// </editor-fold>
 
 	public function id()
@@ -88,6 +105,11 @@ class Answer extends Model implements ActionModelInterface, WidgetModelInterface
 	public function type()
 	{
 		return $this->answer_type;
+	}
+
+	public function position()
+	{
+		return $this->position;
 	}
 
 	/**
@@ -171,6 +193,24 @@ class Answer extends Model implements ActionModelInterface, WidgetModelInterface
 			unset($assocArray['survey_id']);
 		}
 		return parent::fixValueToColumnValue($assocArray);
+	}
+
+	/**
+	 * Set the Form Element
+	 * @param \Claremontdesign\Cdbase\Form\Contracts\ElementInterface $element
+	 */
+	public function setElement(ElementInterface $element)
+	{
+		$this->element = $element;
+	}
+
+	/**
+	 * Return the Element
+	 * @return ElementInterface
+	 */
+	public function element()
+	{
+		return $this->element;
 	}
 
 }

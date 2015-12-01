@@ -13,10 +13,10 @@
 
 $factory->define(cd_config('database.surveys.questions.model.class'), function (Faker\Generator $faker) {
 	return [
-		'title' => $faker->text(50),
+		'title' => $faker->text(150),
 		'description' => $faker->text(150),
-		'status' => $faker->numberBetween(0, 1),
-		'position' => 0,
+		'status' => 1,
+		'position' => 1,
 		'created_at' => $faker->date('Y-m-d'),
 		'updated_at' => $faker->date('Y-m-d')
 	];
