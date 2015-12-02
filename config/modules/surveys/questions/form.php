@@ -180,7 +180,7 @@ return [
 						],
 					],
 					'setid' => [
-						'enable' => true,
+						'enable' => false,
 						'model' => [
 							'value' => [
 								'index' => 'question_set_id',

@@ -94,7 +94,7 @@ return [
 						'enable' => true,
 					],
 					'view' => [
-						'enable' => true,
+						'enable' => false
 					],
 				],
 			],
@@ -167,7 +167,7 @@ return [
 					'attributes' => [
 						'label' => 'Description',
 					],
-					'enable' => true,
+					'enable' => false,
 					'filter' => [
 						'enable' => false,
 					],
@@ -177,13 +177,13 @@ return [
 				],
 				'status' => [
 					'index' => 'status',
-					'type' => 'string',
+					'type' => 'enabledisable',
 					'attributes' => [
 						'label' => 'Status',
 					],
 					'enable' => true,
 					'filter' => [
-						'enable' => true,
+						'enable' => false,
 						'index' => cd_config('database.surveys.surveys.table.name') . '.status'
 					],
 					'ui' => [
@@ -230,7 +230,7 @@ return [
 				'created' => [
 					'index' => 'created_at',
 					'type' => 'datetime',
-					'enable' => true,
+					'enable' => false,
 					'attributes' => [
 						'label' => 'Date Created',
 					],

@@ -30,6 +30,15 @@ $config = [
 			 * @var string
 			 */
 			'name' => 'Answers',
+			'metas' => [
+				'pagetitle' => 'Answers',
+				'pagesubtitle' => 'Each questions can have multiple answerable fields.'
+			],
+			'breadcrumb' => [
+				'nav::surveys',
+				'nav::surveys.children.questions',
+				'nav::surveys.children.questions.children.answers',
+			],
 			/**
 			 * The minimum access level.
 			 * 	If array, set of access level and not minimum access level
@@ -139,7 +148,11 @@ $config = [
 				],
 				'create' => [
 					'enable' => true,
-					'widgets' => ['surveysQuestionsAnswersTypeForm']
+					'widgets' => ['surveysQuestionsAnswersTypeForm'],
+					'metas' => [
+						'pagetitle' => 'New Answerable field',
+						'pagesubtitle' => 'Create a new answerable field.'
+					],
 				],
 			],
 		]

@@ -26,6 +26,15 @@ $config = [
 			'access' => 'admin',
 			'controller' => null,
 			'method' => null,
+			'metas' => [
+				'pagetitle' => 'Questions Set',
+				'pagesubtitle' => 'Questions can be grouped together into a set.'
+			],
+			'breadcrumb' => [
+				'nav::surveys',
+				'nav::surveys.children.questions',
+				'nav::surveys.children.questionsset',
+			],
 			'attributes' => [
 				'breadcrumbs' => []
 			],
@@ -91,7 +100,11 @@ $config = [
 				],
 				'create' => [
 					'enable' => true,
-					'widgets' => ['surveysQuestionsSetForm']
+					'widgets' => ['surveysQuestionsSetForm'],
+					'metas' => [
+						'pagetitle' => 'Create a Question Set',
+						'pagesubtitle' => 'Questions can be grouped together into a set.'
+					],
 				],
 			],
 		]

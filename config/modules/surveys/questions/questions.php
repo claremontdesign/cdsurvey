@@ -36,6 +36,14 @@ $config = [
 			 * @var string|null
 			 */
 			'class' => null,
+			'metas' => [
+				'pagetitle' => 'Questions',
+				'pagesubtitle' => 'Manage Survey Questions.'
+			],
+			'breadcrumb' => [
+				'nav::surveys',
+				'nav::surveys.children.questions',
+			],
 			/**
 			 * Module-specific configuration.
 			 * Will be injected to the module
@@ -160,7 +168,11 @@ $config = [
 				],
 				'create' => [
 					'enable' => true,
-					'widgets' => ['surveysQuestionsForm']
+					'widgets' => ['surveysQuestionsForm'],
+					'metas' => [
+						'pagetitle' => 'Create Question',
+						'pagesubtitle' => 'Create a new survey question.'
+					],
 				],
 			],
 		]

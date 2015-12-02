@@ -16,6 +16,96 @@
  */
 defined('MODULE_SURVEYS') ? : define('MODULE_SURVEYS', 'surveys');
 $config = [
+	'template' => [
+		'backend' => [
+			'nav' => [
+				'main' => [
+					'surveys' => [
+						'breadcrumbs' => true,
+						'label' => 'Surveys',
+						'title' => 'Manage Surveys',
+						'icon' => 'fa fa-bar-chart-o',
+						'access' => 'admin',
+						'enable' => true,
+						'url' => [
+							'route' => [
+								'name' => 'Module',
+								'module' => 'surveys'
+							],
+						],
+						'children' => [
+							'questions' => [
+								'breadcrumbs' => true,
+								'title' => 'Manage Survey Questions',
+								'label' => 'Questions',
+								'icon' => 'fa  fa-question',
+								'access' => 'admin',
+								'enable' => true,
+								'url' => [
+									'route' => [
+										'name' => 'Module',
+										'module' => 'surveys-questions',
+										'record' => function(){
+									return \Route::input('record');
+							}
+									],
+								],
+								'children' => [
+									'answers' => [
+										'breadcrumbs' => true,
+										'title' => 'Manage Answers',
+										'label' => 'Answers',
+										'icon' => 'fa fa-pencil',
+										'access' => 'admin',
+										'enable' => true,
+										'url' => [
+											'route' => [
+												'name' => 'Module',
+												'module' => 'surveys-questions-answers',
+												'record' => function(){
+											return \Route::input('record');
+												},
+												'paramOne' => function(){
+											return \Route::input('paramOne');
+												}
+											],
+										],
+										'children' => [
+											'options' => [
+												'breadcrumbs' => true,
+												'title' => 'Answer Options',
+												'label' => 'Options',
+												'icon' => 'fa fa-list',
+												'access' => 'admin',
+												'enable' => true,
+												'url' => [
+													'route' => [
+														'name' => 'Module',
+														'module' => 'surveys-questions-answers-options',
+														'record' => function(){
+													return \Route::input('record');
+														},
+														'paramOne' => function(){
+													return \Route::input('paramOne');
+														},
+														'paramTwo' => function(){
+													return \Route::input('paramTwo');
+														}
+													],
+												],
+												'children' => [
+												]
+											],
+										]
+									],
+								]
+							],
+						]
+					],
+				]
+			],
+		],
+	],
 	'modules' => [
 		/**
 		 * admin/moduleIndex/actionIndex/taskIndex/recordIndex
@@ -30,6 +120,13 @@ $config = [
 			 * @var string
 			 */
 			'name' => 'Surveys',
+			'metas' => [
+				'pagetitle' => 'Surveys',
+				'pagesubtitle' => 'Manage survey and questions.'
+			],
+			'breadcrumb' => [
+				'nav::surveys'
+			],
 			/**
 			 * Class to be used to instantiate this module
 			 * instanceof /Model/Module/ModuleInterface
@@ -119,6 +216,10 @@ $config = [
 				],
 				'create' => [
 					'enable' => true,
+					'metas' => [
+						'pagetitle' => 'Create A Survey',
+						'pagesubtitle' => 'Create a new survey.'
+					],
 					'widgets' => ['surveysForm']
 				],
 			],

@@ -74,7 +74,7 @@ return [
 						],
 					],
 					'questionSet' => [
-						'enable' => true,
+						'enable' => false,
 						'attributes' => [
 							'label' => 'Question Set',
 						],
@@ -120,7 +120,7 @@ return [
 						'enable' => true,
 					],
 					'view' => [
-						'enable' => true,
+						'enable' => false,
 					],
 				],
 			],
@@ -135,7 +135,7 @@ return [
 					 * 	include the DB column prefix
 					 * default to columnIndex
 					 */
-					'enable' => false,
+					'enable' => true,
 					'index' => cd_config('database.surveys.questions.table.primary'),
 					'filter' => [
 						'enable' => true,
@@ -161,10 +161,32 @@ return [
 					'ui' => [
 						'html' => [
 							'filterInput' => [
-								'placeholder' => 'Question Id'
+								'placeholder' => 'ID'
 							],
 						],
 						'events' => [],
+					],
+				],
+				'status' => [
+					'index' => 'status',
+					'type' => 'enabledisable',
+					'attributes' => [
+						'label' => 'Status',
+					],
+					'enable' => true,
+					'filter' => [
+						'enable' => false,
+						'index' => cd_config('database.surveys.questions.table.name') . '.status'
+					],
+					'ui' => [
+						'html' => [
+							'filterInput' => [
+								'placeholder' => 'Search Status'
+							],
+						],
+					],
+					'sort' => [
+						'enable' => true,
 					],
 				],
 				'question' => [
@@ -224,32 +246,10 @@ return [
 						'enable' => true,
 					],
 				],
-				'status' => [
-					'index' => 'status',
-					'type' => 'string',
-					'attributes' => [
-						'label' => 'Status',
-					],
-					'enable' => true,
-					'filter' => [
-						'enable' => true,
-						'index' => cd_config('database.surveys.questions.table.name') . '.status'
-					],
-					'ui' => [
-						'html' => [
-							'filterInput' => [
-								'placeholder' => 'Search Status'
-							],
-						],
-					],
-					'sort' => [
-						'enable' => true,
-					],
-				],
 				'created' => [
 					'index' => 'created_at',
 					'type' => 'datetime',
-					'enable' => true,
+					'enable' => false,
 					'attributes' => [
 						'label' => 'Date Created',
 					],

@@ -102,7 +102,7 @@ return [
 						'enable' => true,
 					],
 					'view' => [
-						'enable' => true,
+						'enable' => false,
 					],
 				],
 			],
@@ -190,7 +190,7 @@ return [
 				],
 				'status' => [
 					'index' => 'status',
-					'type' => 'string',
+					'type' => 'enabledisable',
 					'attributes' => [
 						'label' => 'Status',
 					],
@@ -204,7 +204,7 @@ return [
 				],
 				'required' => [
 					'index' => 'required',
-					'type' => 'string',
+					'type' => 'yesno',
 					'attributes' => [
 						'label' => 'Is Required?',
 					],
@@ -222,7 +222,7 @@ return [
 					'attributes' => [
 						'label' => 'Position',
 					],
-					'enable' => true,
+					'enable' => false,
 					'filter' => [
 						'enable' => false,
 					],

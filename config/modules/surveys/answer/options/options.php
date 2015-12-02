@@ -20,11 +20,21 @@ $config = [
 		'surveys-questions-answers-options' => [
 			'enable' => true,
 			'name' => 'Answer Options',
+			'metas' => [
+				'pagetitle' => 'Answer Options',
+				'pagesubtitle' => 'Some answers can have selections and options.'
+			],
+			'breadcrumb' => [
+				'nav::surveys',
+				'nav::surveys.children.questions',
+				'nav::surveys.children.questions.children.answers',
+				'nav::surveys.children.questions.children.answers.children.options',
+			],
 			'access' => 'admin',
 			'parent' => [
 				'enable' => true,
 				'request' => [
-					'index' => ['record', 'paramOne','paramTwo']
+					'index' => ['record', 'paramOne', 'paramTwo']
 				],
 				'route' => [
 					[
@@ -44,7 +54,7 @@ $config = [
 				],
 				'model' => [
 					'value' => [
-						'index' => ['survey_id', 'question_id','answer_type_id']
+						'index' => ['survey_id', 'question_id', 'answer_type_id']
 					],
 					'repository' => [
 						'record' => [
@@ -108,7 +118,11 @@ $config = [
 				],
 				'create' => [
 					'enable' => true,
-					'widgets' => ['surveysQuestionsAnswersOptionForm']
+					'widgets' => ['surveysQuestionsAnswersOptionForm'],
+					'metas' => [
+						'pagetitle' => 'Create an Answer option.',
+						'pagesubtitle' => 'Create a new Answer option.'
+					],
 				],
 			],
 		]
