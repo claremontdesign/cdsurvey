@@ -222,10 +222,18 @@ $config = [
 					],
 					'widgets' => ['surveysForm']
 				],
+				'select' => [
+					'enable' => true,
+					'metas' => [
+						'pagetitle' => 'Surveys',
+						'pagesubtitle' => 'List of available surveys.'
+					],
+					'widgets' => ['surveyAvailable']
+				],
 			],
 		]
 	],
 ];
 return array_merge_recursive(
-		$config, require __DIR__ . '/../../widgets/survey.php', require __DIR__ . '/form.php', require __DIR__ . '/datatable.php', require __DIR__ . '/questions/questions.php', require __DIR__ . '/questions/set/set.php', require __DIR__ . '/answer/answer.php', require __DIR__ . '/answer/options/options.php'
+		$config, require __DIR__ . '/../../widgets/surveyAvailable.php', require __DIR__ . '/form.php', require __DIR__ . '/datatable.php', require __DIR__ . '/questions/questions.php', require __DIR__ . '/questions/set/set.php', require __DIR__ . '/answer/answer.php', require __DIR__ . '/answer/options/options.php'
 );

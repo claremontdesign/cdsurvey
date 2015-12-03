@@ -13,6 +13,6 @@
  * @project Claremontdesign
  * @package Cdsurvey
  */
-Route:get('claremontdesign/cdsurvey', function(){
+Route::get('claremontdesign/cdsurvey', function(){
 	return 'ClaremontDesign Survey Package.';
 });

@@ -14,7 +14,10 @@
  */
 return [
 	'widgets' => [
-		'survey' => [
+		/**
+		 * Displays the current available Surveys
+		 */
+		'surveyAvailable' => [
 			'access' => 'guest',
 			'enable' => true,
 			'type' => 'survey',
@@ -30,6 +33,16 @@ return [
 				 * if true, questions will be displayed by set and not by questions
 				 */
 				'set' => false
+			],
+			'request' => [
+				'index' => 'record',
+			],
+			'url' => [
+				'route' => [
+					'name' => 'Module',
+					'module' => 'surveys',
+					'action' => 'customer',
+				],
 			],
 			'models' => [
 				'surveys' => [

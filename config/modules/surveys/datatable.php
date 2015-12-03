@@ -270,7 +270,7 @@ return [
 					/**
 					 * Default sorting
 					 */
-					'sort' => ['id' => 'desc'],
+					'sort' => [cd_config('database.surveys.surveys.table.name') . '.' . cd_config('database.surveys.surveys.table.primary') => 'desc'],
 					/**
 					 * Records to view per page
 					 */

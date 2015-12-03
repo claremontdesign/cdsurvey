@@ -9,5 +9,5 @@
 
 @append
 @section('content')
-{!! cd_widget_standalone('survey', compact('surveyId')) !!}
+{!! cd_widget_standalone('surveyAvailable', compact('surveyId')) !!}
 @stop

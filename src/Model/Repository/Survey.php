@@ -68,6 +68,14 @@ class Survey extends Repository implements RepositoryModuleInterface
 		return $this->_casts($this->repo->setDebug($debug)->getAll($this->_columns(), $filters, $sort, $this->_joins(), $paginate, $options));
 	}
 
+	public function getAllEnabled($columns = ['*'], $filters = [], $sort = [], $joins = [], $paginate = [], $options = [], $debug = false)
+	{
+		$filters = [
+			$this->_table() . '.status' => 1
+		];
+		return $this->_casts($this->repo->setDebug(false)->getAll($this->_columns(), $filters, $sort, $this->_joins(), $paginate, $options));
+	}
+
 	/**
 	 * Cast each Model
 	 * @return Model

@@ -76,6 +76,12 @@ class Survey extends Widget implements FormInterface
 	protected $survey = false;
 
 	/**
+	 * Collection of Surveys
+	 * @var Collection
+	 */
+	protected $surveys = false;
+
+	/**
 	 * Check if Survey is OK
 	 * @var type
 	 */
@@ -146,6 +152,15 @@ class Survey extends Widget implements FormInterface
 	}
 
 	/**
+	 * Has Survey Id Given
+	 * @return type
+	 */
+	public function hasSurveyId()
+	{
+		return !empty($this->getSurveyId());
+	}
+
+	/**
 	 * Check this hasQuestions
 	 * @return boolean
 	 */
@@ -165,6 +180,19 @@ class Survey extends Widget implements FormInterface
 			$this->survey = $this->getRepo('surveys')->byId($this->getSurveyId());
 		}
 		return $this->survey;
+	}
+
+	/**
+	 * REturn enabled Surveys
+	 * @return Collection
+	 */
+	public function getAllEnabled()
+	{
+		if($this->surveys === false)
+		{
+			$this->surveys = $this->getRepo('surveys')->getAllEnabled();
+		}
+		return $this->surveys;
 	}
 
 	/**
@@ -244,13 +272,23 @@ class Survey extends Widget implements FormInterface
 	 */
 	public function getWidget()
 	{
-		$defaultView = cd_survey_view_name('widgets.survey.survey');
+		$defaultView = $this->getViewName('widgets.survey.survey');
 		$view = $this->getConfig('view.survey', $defaultView);
 		if($this->isDone())
 		{
-			$view = $this->getConfig('view.thankyou', $defaultView);
+			$view = $this->getViewName($this->getConfig('view.thankyou', $defaultView));
 		}
 		return $this->view($view, $defaultView, array('widget' => $this));
+	}
+
+	/**
+	 * Return the View Name
+	 * @param type $viewName
+	 * @return type
+	 */
+	public function getViewName($viewName)
+	{
+		return cd_survey_view_name($viewName);
 	}
 
 	/**
@@ -289,6 +327,26 @@ class Survey extends Widget implements FormInterface
 	}
 
 	/**
+	 * PreSave RESULT MODEL
+	 * @param type $result
+	 * @return type
+	 */
+	public function resultPreSave($result)
+	{
+		return $result;
+	}
+
+	/**
+	 * PreSave Answer
+	 * @param type $answer
+	 * @return type
+	 */
+	public function answerPreSave($answer)
+	{
+		return $answer;
+	}
+
+	/**
 	 * PostProcess Widget
 	 */
 	public function postProcess()
@@ -310,6 +368,7 @@ class Survey extends Widget implements FormInterface
 					'status' => 1
 				];
 				$result['customer_id'] = null;
+				$result = $this->resultPreSave($result);
 				$resultModel = $class->create($result);
 				$sessionValues = $this->widget()->request()->session()->all();
 				if(!empty($sessionValues))
@@ -343,7 +402,7 @@ class Survey extends Widget implements FormInterface
 			$this->widget()->request()->session()->forget('surveyRequest');
 			$this->widget()->request()->session()->forget('surveyPage');
 			$this->widget()->request()->session()->put('surveyDone', true);
-			return redirect($this->getSurveyUrl() . '?done=1');
+			return redirect($this->getDoneUrl());
 		}
 		else
 		{
@@ -354,12 +413,35 @@ class Survey extends Widget implements FormInterface
 	}
 
 	/**
+	 * Done URL
+	 * @return type
+	 */
+	public function getDoneUrl()
+	{
+		return $this->getSurveyUrl() . '?done=1';
+	}
+
+	/**
 	 * Return this survey URL
 	 * @return string
 	 */
-	public function getSurveyUrl()
+	public function getSurveyUrl($survey = null)
 	{
-		return '/' . $this->widget()->request()->path();
+		$config = $this->getConfig('url');
+		if($survey instanceof ModelSurveyInterface)
+		{
+			$config['route'][$this->getRequestIndex()] = $survey->id();
+		}
+		return $this->getUrl(null, $config);
+	}
+
+	/**
+	 * REturn the REquest Iondex
+	 * @return integer
+	 */
+	public function getRequestIndex()
+	{
+		return $this->getConfig('request.index', 'record');
 	}
 
 	/**
@@ -380,7 +462,6 @@ class Survey extends Widget implements FormInterface
 	 */
 	protected function processQuestions()
 	{
-//		 $this->widget()->request()->session()->flush();
 		$survey = $this->getSurvey();
 		$questions = $this->fetchQuestions();
 		$messageBag = $this->widget()->request()->session()->pull('formError');
@@ -433,7 +514,7 @@ class Survey extends Widget implements FormInterface
 				$this->widget()->controller()->validate($this->widget()->request(), $validators->toArray(), $validatorsMessages->toArray());
 			}
 		}
-		if(!$this->hasSurvey())
+		if(!$this->hasSurvey() && $this->hasSurveyId())
 		{
 			cd_flash_errormsg('Survey not found.');
 		}

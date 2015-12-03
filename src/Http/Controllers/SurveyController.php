@@ -25,7 +25,6 @@ class SurveyController extends BaseController
 
 	public function index()
 	{
-		$surveyId = 1;
 		return view(cd_survey_view_name('index/index'), compact('surveyId'));
 	}
 
