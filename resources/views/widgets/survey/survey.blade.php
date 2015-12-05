@@ -398,7 +398,7 @@ if(!$hasSurveyId)
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h2 class="panel-title">
-										<?php echo $question->id() ?>. <?php echo $question->question(); ?>
+										<?php echo $questions->currentPage() ?>. <?php echo $question->question(); ?>
 									</h2>
 								</div>
 								<div class="panel-collapse collapse in">
@@ -432,7 +432,7 @@ if(!$hasSurveyId)
 		<?php else: ?>
 			<div class="jumbotron">
 				<h1 class="survey-title">Thank you!</h1>
-				<p><?php echo $survey->getDoneMessage()?></p>
+				<p><?php echo $widget->getDoneMessage()?></p>
 			</div>
 		<?php endif; ?>
 	</div>

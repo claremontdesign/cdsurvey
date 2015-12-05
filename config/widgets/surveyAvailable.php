@@ -56,7 +56,7 @@ return [
 					'primaryKey' => cd_config('database.surveys.questions.table.primary'),
 					'class' => cd_config('database.surveys.questions.model.class'),
 					'repository' => [
-						'perpage' => 2,
+						'perpage' => 1,
 						'class' => cd_config('database.surveys.questions.repository.class')
 					],
 				],

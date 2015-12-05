@@ -230,6 +230,22 @@ $config = [
 					],
 					'widgets' => ['surveyAvailable']
 				],
+				'start' => [
+					'enable' => true,
+					'metas' => [
+						'pagetitle' => 'Starting the Survey...',
+						'pagesubtitle' => ''
+					],
+					'widgets' => ['surveyAvailable'],
+				],
+				'done' => [
+					'enable' => true,
+					'metas' => [
+						'pagetitle' => 'Survey Done...',
+						'pagesubtitle' => 'You finished the survey!'
+					],
+					'widgets' => ['surveyAvailable'],
+				],
 			],
 		]
 	],
