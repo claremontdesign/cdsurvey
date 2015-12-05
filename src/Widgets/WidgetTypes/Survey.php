@@ -402,6 +402,8 @@ class Survey extends Widget implements FormInterface
 			$this->widget()->request()->session()->forget('surveyRequest');
 			$this->widget()->request()->session()->forget('surveyPage');
 			$this->widget()->request()->session()->put('surveyDone', true);
+			$this->widget()->request()->session()->put('surveyDone' . $this->getSurveyId(), true);
+			$this->fireEvent('done');
 			return redirect($this->getDoneUrl());
 		}
 		else
@@ -489,6 +491,10 @@ class Survey extends Widget implements FormInterface
 							if($this->validate())
 							{
 								$input = $this->widget()->request()->input($element->index());
+								if(empty($input))
+								{
+									$input = [0 => ''];
+								}
 								if(!empty($input))
 								{
 									foreach ($input as $y => $v)
@@ -548,14 +554,23 @@ class Survey extends Widget implements FormInterface
 		];
 
 		$inputType = 'text';
+		$hasSelections = false;
 		switch ($type)
 		{
-			case 'select':
-			case 'dropdownselect':
-				$class = cd_config('form.classes.elements.select');
+			case 'yesno':
+				$hasSelections = true;
+				$class = cd_config('form.classes.elements.radio');
 				$inputType = 'select';
+				$config['select']['type'] = 'select';
+				$config['select']['options']['options'] = 'yesno';
+				break;
+			case 'radio':
+				$hasSelections = true;
+				$class = cd_config('form.classes.elements.radio');
+				$inputType = 'radio';
+				$config['select']['type'] = 'radio';
 				$answerOptions = $answer->getOptions();
-				$selections = [ '' => 'Select'];
+				$selections = [];
 				if(!empty($answerOptions))
 				{
 					foreach ($answerOptions as $option)
@@ -564,22 +579,40 @@ class Survey extends Widget implements FormInterface
 					}
 				}
 				$config['select']['options']['array'] = $selections;
-				$config['select']['type'] = $type;
 				break;
 			case 'textarea':
 				$class = cd_config('form.classes.elements.textarea');
 				$inputType = 'textarea';
 				break;
+			case 'numeric':
+				$class = cd_config('form.classes.elements.text');
+				$inputType = 'number';
+				break;
+			case 'date':
+				$class = cd_config('form.classes.elements.text');
+				$inputType = 'date';
+				break;
 			default;
 				$class = cd_config('form.classes.elements.text');
 		}
 		$config['type'] = $inputType;
+		$config['help']['description'] = $answer->description();
 		$index = 'answer' . $answer->id();
 		$tab = null;
 		$fieldset = null;
 		$element = new $class($index, $config, $this, $tab, $fieldset, $this->widget()->request(), $this->crudAction());
 		return $element;
 	}
+
+
+	/**
+	 * Return the Done Message
+	 */
+	public function getDoneMessage()
+	{
+		return $this->getConfig('message.done', 'Thank you for completing the survey!');
+	}
+
 
 	/**
 	 * REturn SurveyData

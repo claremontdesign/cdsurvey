@@ -131,6 +131,9 @@ $config = [
 					'widgets' => ['surveysQuestionsAnswersTypeData']
 				],
 				'update' => [
+					'breadcrumb' => [
+						'nav::surveys.children.questions.children.answers.children.options',
+					],
 					'enable' => true,
 					'widgets' => ['surveysQuestionsAnswersTypeForm']
 				],

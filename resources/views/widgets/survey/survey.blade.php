@@ -14,7 +14,7 @@
 	}
 	.survey-question{
 		padding: 0 20px;
-		font-size: 25px;
+		/*font-size: 25px;*/
 	}
 	.survey-question{
 		margin: 0 0 15px 5%;
@@ -432,7 +432,7 @@ if(!$hasSurveyId)
 		<?php else: ?>
 			<div class="jumbotron">
 				<h1 class="survey-title">Thank you!</h1>
-				<p>Again, thank you very much for participating</p>
+				<p><?php echo $survey->getDoneMessage()?></p>
 			</div>
 		<?php endif; ?>
 	</div>

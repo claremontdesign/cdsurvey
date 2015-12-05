@@ -159,15 +159,14 @@ return [
 							'options' => [
 								'array' => [
 									'text' => 'Text',
+									'textarea' => 'Textarea',
 									'numeric' => 'Numeric',
-									'yesno' => 'YesNo',
 									'date' => 'Date',
-									'time' => 'Time',
-									'datetime' => 'DateTime',
-									'checkbox' => 'Checkbox',
-									'dropdownselect' => 'Dropdown Selection',
-									'radioselect' => 'Radion Selection',
-									'multipleselect' => 'Multiple Selection',
+									//'time' => 'Time',
+									//'datetime' => 'DateTime',
+									'yesno' => 'Yes - No',
+									'radio' => 'Radio Selection',
+									'checkbox' => 'Multiple Selection',
 								],
 							]
 						],

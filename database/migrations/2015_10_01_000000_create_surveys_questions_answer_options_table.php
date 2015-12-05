@@ -22,12 +22,13 @@ class CreateSurveysQuestionsAnswerOptionsTable extends Migration
 		Schema::create(cd_config('database.surveys.answerOptions.table.name'), function(Blueprint $table)
 		{
 			$table->increments(cd_config('database.surveys.answerOptions.table.primary'));
-			$table->integer('answer_id')->nullable();
+			$table->integer('answer_id')->nullable()->unsigned();
 			$table->string('option_name')->nullable();
 			$table->string('option_value')->nullable();
 			$table->boolean('status')->nullable();
 			$table->integer('position')->nullable();
 			$table->softDeletes();
+			// $table->foreign('answer_id_id')->references(cd_config('database.surveys.answer.table.primary'))->on(cd_config('database.surveys.answer.table.name'));
 		});
 	}
 

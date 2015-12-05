@@ -107,6 +107,11 @@ class Answer extends Model implements ActionModelInterface, WidgetModelInterface
 		return $this->answer_type;
 	}
 
+	public function description()
+	{
+		return $this->description;
+	}
+
 	public function position()
 	{
 		return $this->position;
@@ -118,7 +123,7 @@ class Answer extends Model implements ActionModelInterface, WidgetModelInterface
 	 */
 	public function optionable()
 	{
-		$withOptions = ['checkbox', 'dropdownselect', 'radioselect', 'multipleselect'];
+		$withOptions = ['checkbox', 'radio'];
 		return in_array($this->type(), $withOptions);
 	}
 

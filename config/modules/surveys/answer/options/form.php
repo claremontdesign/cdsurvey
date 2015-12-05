@@ -34,7 +34,7 @@ return [
 				 * The Request Index
 				 * the index of requests/inputs to check for recordId
 				 */
-				'index' => 'paramTwo',
+				'index' => 'paramThree',
 				/**
 				 * Allow multiple forms/records to be manipulated
 				 * @TODO, currently true
