@@ -21,7 +21,7 @@ $config = [
 			'enable' => true,
 			'name' => 'Answer Options',
 			'metas' => [
-				'pagetitle' => 'Answer Options',
+				'pagetitle' => 'Survey Questions - Answer Options',
 				'pagesubtitle' => 'Some answers can have selections and options.'
 			],
 			'breadcrumb' => [

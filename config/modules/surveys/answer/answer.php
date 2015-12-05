@@ -31,7 +31,7 @@ $config = [
 			 */
 			'name' => 'Answers',
 			'metas' => [
-				'pagetitle' => 'Answers',
+				'pagetitle' => 'Survey Questions - Answers',
 				'pagesubtitle' => 'Each questions can have multiple answerable fields.'
 			],
 			'breadcrumb' => [

@@ -37,7 +37,7 @@ $config = [
 			 */
 			'class' => null,
 			'metas' => [
-				'pagetitle' => 'Questions',
+				'pagetitle' => 'Survey Questions',
 				'pagesubtitle' => 'Manage Survey Questions.'
 			],
 			'breadcrumb' => [
