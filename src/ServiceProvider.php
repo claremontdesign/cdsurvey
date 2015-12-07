@@ -26,6 +26,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 		});
 		app('cdbase')->addPackage(\Claremontdesign\Cdsurvey\Cdsurvey::class);
 		app('cdbase')->addModule('surveys', __DIR__ . '/../config/modules/surveys/surveys.php');
+		app('cdbase')->addCommand('migrate', 'db:seed --class=SurveyTableSeeder');
 	}
 
 	public function boot()
