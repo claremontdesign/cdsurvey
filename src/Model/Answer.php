@@ -87,7 +87,7 @@ class Answer extends Model implements ActionModelInterface, WidgetModelInterface
 	 */
 	public function getOptions($enabled = true)
 	{
-		return $this->options()->get();
+		return $this->options()->sort('position', 'desc')->get();
 	}
 
 	// </editor-fold>

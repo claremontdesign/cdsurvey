@@ -87,15 +87,30 @@ class Answer extends Repository implements RepositoryModuleInterface
 		{
 			foreach ($filters as $i => $filter)
 			{
+				if(in_array($i, $notColumns))
+				{
+					unset($filters[$i]);
+					continue;
+				}
 				foreach ($filter as $op => $fi)
 				{
-					if(in_array($fi['field'], $notColumns))
+					if(is_array($fi))
 					{
-						unset($filters[$i]);
+						foreach ($fi as $fK => $fV)
+						{
+							if(!empty($fV['field']))
+							{
+								if(in_array($fV['field'], $notColumns))
+								{
+									unset($filters[$i]);
+								}
+							}
+						}
 					}
 				}
 			}
 		}
+
 		return $this->_casts($this->repo->setDebug($debug)->getAll($this->_columns(), $filters, $sort, $this->_joins(), $paginate, $options));
 	}
 

@@ -733,6 +733,22 @@ class Survey extends Widget implements FormInterface
 				}
 				$config['select']['options']['array'] = $selections;
 				break;
+			case 'checkbox':
+				$hasSelections = true;
+				$class = cd_config('form.classes.elements.checkbox');
+				$inputType = 'checkbox';
+				$config['select']['type'] = 'checkbox';
+				$answerOptions = $answer->getOptions();
+				$selections = [];
+				if(!empty($answerOptions))
+				{
+					foreach ($answerOptions as $option)
+					{
+						$selections[$option->value()] = $option->label();
+					}
+				}
+				$config['select']['options']['array'] = $selections;
+				break;
 			case 'textarea':
 				$class = cd_config('form.classes.elements.textarea');
 				$inputType = 'textarea';
@@ -750,6 +766,14 @@ class Survey extends Widget implements FormInterface
 		}
 		$config['type'] = $inputType;
 		$config['help']['description'] = $answer->description();
+		if($answer->isRequired())
+		{
+			$config['validation']['required']['enable'] = true;
+		}
+		else
+		{
+			$config['validation']['required']['enable'] = false;
+		}
 		$index = 'answer' . $answer->id();
 		$tab = null;
 		$fieldset = null;

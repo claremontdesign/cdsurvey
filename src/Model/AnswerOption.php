@@ -79,6 +79,11 @@ class AnswerOption extends Model implements WidgetModelInterface, FilterableInte
 		return $this->option_value;
 	}
 
+	public function position()
+	{
+		return $this->position;
+	}
+
 	public function setUpdatedAt($value)
 	{
 
