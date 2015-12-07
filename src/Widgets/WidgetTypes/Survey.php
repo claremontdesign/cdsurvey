@@ -769,6 +769,7 @@ class Survey extends Widget implements FormInterface
 		if($answer->isRequired())
 		{
 			$config['validation']['required']['enable'] = true;
+			$config['validation']['required']['message'] = 'Required.';
 		}
 		else
 		{
