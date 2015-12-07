@@ -14,15 +14,12 @@
 $factory->define(cd_config('database.surveys.answer.model.class'), function (Faker\Generator $faker) {
 	$types = [
 		'text',
+		'textarea',
 		'numeric',
-		'yesno',
 		'date',
-		'time',
-		'datetime',
-		'checkbox',
-		'dropdownselect',
-		'radioselect',
-		'multipleselect'
+		'yesno',
+		'radio',
+		'checkbox'
 	];
 	return [
 		'label' => $faker->text(50),

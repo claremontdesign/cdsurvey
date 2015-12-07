@@ -12,47 +12,20 @@ class SurveyTableSeeder extends Seeder
 	 */
 	public function run()
 	{
-		factory(cd_config('database.surveys.surveys.model.class'), 2)->create()->each(function($survey) {
-			factory(cd_config('database.surveys.questions.model.class'), rand(2, 10))->create()->each(function($question) use ($survey) {
-				$survey->questions()->save($question);
-				$count = rand(1, 2);
-				if($count > 1)
-				{
-					factory(cd_config('database.surveys.answer.model.class'), $count)->create()->each(function($answer) use($question) {
-						$question->answers()->save($answer);
-						if($answer instanceof \Claremontdesign\Cdsurvey\Model\Answer)
-						{
-							$optionable = $answer->optionable();
-							if(!empty($optionable))
-							{
-								factory(cd_config('database.surveys.answerOptions.model.class'), 4)->create()->each(function($option) use($answer) {
-									if($option instanceof \Claremontdesign\Cdsurvey\Model\AnswerOption)
-									{
-										$answer->options()->save($option);
-									}
-							});
-							}
-						}
-					});
-				}
-				else
-				{
-					$answer = factory(cd_config('database.surveys.answer.model.class'), $count)->create();
-					$question->answers()->save($answer);
-					if($answer instanceof \Claremontdesign\Cdsurvey\Model\Answer)
+		factory(cd_config('database.surveys.surveys.model.class'), 2)->make()->each(function($survey) {
+			$survey->save();
+			factory(cd_config('database.surveys.questions.model.class'), 2)->make()->each(function($question) use ($survey) {
+				$question->survey()->associate($survey)->save();
+				factory(cd_config('database.surveys.answer.model.class'), rand(2, 5))->make()->each(function($answer) use($question) {
+					$answer->question()->associate($question)->save();
+					$optionable = $answer->optionable();
+					if($optionable)
 					{
-						$optionable = $answer->optionable();
-						if(!empty($optionable))
-						{
-							factory(cd_config('database.surveys.answerOptions.model.class'), 4)->create()->each(function($option) use($answer) {
-								if($option instanceof \Claremontdesign\Cdsurvey\Model\AnswerOption)
-								{
-									$answer->options()->save($option);
-								}
-							});
-						}
+						factory(cd_config('database.surveys.answerOptions.model.class'), 4)->make()->each(function($option) use($answer) {
+							$option->answer()->associate($answer)->save();
+						});
 					}
-				}
+				});
 			});
 		});
 	}
