@@ -17,14 +17,14 @@ class CreateSurveysTable extends Migration
 	public function up()
 	{
 
-		Schema::drop(cd_config('database.surveys.answerOptions.table.name'));
-		Schema::drop(cd_config('database.surveys.answer.table.name'));
-		Schema::drop(cd_config('database.surveys.questionSet.table.name'));
-		Schema::drop(cd_config('database.surveys.questions.table.name'));
-		Schema::drop(cd_config('database.surveys.resultAnswers.table.name'));
-		Schema::drop(cd_config('database.surveys.result.table.name'));
-		Schema::drop(cd_config('database.surveys.surveys.table.name'));
-		
+		Schema::dropIfExists(cd_config('database.surveys.answerOptions.table.name'));
+		Schema::dropIfExists(cd_config('database.surveys.answer.table.name'));
+		Schema::dropIfExists(cd_config('database.surveys.questionSet.table.name'));
+		Schema::dropIfExists(cd_config('database.surveys.questions.table.name'));
+		Schema::dropIfExists(cd_config('database.surveys.resultAnswers.table.name'));
+		Schema::dropIfExists(cd_config('database.surveys.result.table.name'));
+		Schema::dropIfExists(cd_config('database.surveys.surveys.table.name'));
+
 		/**
 		 * Surveys
 		 */
@@ -160,12 +160,12 @@ class CreateSurveysTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop(cd_config('database.surveys.answerOptions.table.name'));
-		Schema::drop(cd_config('database.surveys.answer.table.name'));
-		Schema::drop(cd_config('database.surveys.questionSet.table.name'));
-		Schema::drop(cd_config('database.surveys.questions.table.name'));
-		Schema::drop(cd_config('database.surveys.resultAnswers.table.name'));
-		Schema::drop(cd_config('database.surveys.result.table.name'));
-		Schema::drop(cd_config('database.surveys.surveys.table.name'));
+		Schema::dropIfExists(cd_config('database.surveys.answerOptions.table.name'));
+		Schema::dropIfExists(cd_config('database.surveys.answer.table.name'));
+		Schema::dropIfExists(cd_config('database.surveys.questionSet.table.name'));
+		Schema::dropIfExists(cd_config('database.surveys.questions.table.name'));
+		Schema::dropIfExists(cd_config('database.surveys.resultAnswers.table.name'));
+		Schema::dropIfExists(cd_config('database.surveys.result.table.name'));
+		Schema::dropIfExists(cd_config('database.surveys.surveys.table.name'));
 	}
 }
