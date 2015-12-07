@@ -76,6 +76,18 @@ class Survey extends Widget implements FormInterface
 	protected $survey = false;
 
 	/**
+	 * The Result Object
+	 * @var ModelResult
+	 */
+	protected $result = false;
+
+	/**
+	 * The REsult Answers
+	 * @var Collection of ResultAnswers
+	 */
+	protected $resultAnswers = false;
+
+	/**
 	 * Collection of Surveys
 	 * @var Collection
 	 */
@@ -109,7 +121,7 @@ class Survey extends Widget implements FormInterface
 
 	/**
 	 * Retur the Survey Id
-	 * @return type
+	 * @return integer
 	 */
 	public function getSurveyId()
 	{
@@ -158,6 +170,71 @@ class Survey extends Widget implements FormInterface
 	public function hasSurveyId()
 	{
 		return !empty($this->getSurveyId());
+	}
+
+	/**
+	 * Retur the Result Id
+	 * @return integer
+	 */
+	public function getResultId()
+	{
+		return $this->widget()->getParameter('resultId');
+	}
+
+	/**
+	 * Return the Result Object
+	 * @return ModelResults
+	 */
+	public function getResult()
+	{
+		if($this->result === false)
+		{
+			$this->result = $this->getRepo('result')->byId($this->getSurvey(), $this->getResultId());
+			if(!empty($this->result))
+			{
+				$this->getResultAnswers();
+			}
+		}
+		return $this->result;
+	}
+
+	/**
+	 * Return the Answers
+	 * @return Collection of ModelResultAnswers
+	 */
+	public function getResultAnswers()
+	{
+		if($this->resultAnswers === false)
+		{
+			$this->resultAnswers = null;
+			if($this->hasResult())
+			{
+				$answers = $this->fetchAnswers();
+				if(!empty($answers))
+				{
+					$this->resultAnswers = collect([]);
+					foreach ($answers as $answer)
+					{
+						$this->resultAnswers->put($answer->question_id . '_' . $answer->answer_id, $answer);
+					}
+					return true;
+				}
+			}
+		}
+		return $this->resultAnswers;
+	}
+
+	/**
+	 * Check if showing Answers
+	 * @return boolean|ModelResult
+	 */
+	public function hasResult()
+	{
+		if($this->hasSurvey())
+		{
+			return !empty($this->getResult());
+		}
+		return false;
 	}
 
 	/**
@@ -249,11 +326,28 @@ class Survey extends Widget implements FormInterface
 			]
 		];
 		$joins = [];
-		$sort = ['position' => 'ASC'];
-		$paginate = $this->getConfig('models.questions.repository.perpage', 1);
+		$sort = ['position' => 'DESC'];
+		$paginate = $this->getQuestionsPerPage();
 		$options = [];
 		$questions = $this->getRepo('questions')->getAll($columns, $filters, $sort, $joins, $paginate, $options, false);
 		return $questions;
+	}
+
+	/**
+	 * Return questions per page
+	 * @return integer
+	 */
+	public function getQuestionsPerPage()
+	{
+		return $this->getConfig('models.questions.repository.perpage', 1);
+	}
+
+	/**
+	 * Return the Answers
+	 */
+	public function fetchAnswers()
+	{
+		return $this->getRepo('resultAnswers')->byResult($this->getResult());
 	}
 
 	/**
@@ -274,11 +368,25 @@ class Survey extends Widget implements FormInterface
 	{
 		$defaultView = $this->getViewName('widgets.survey.survey');
 		$view = $this->getConfig('view.survey', $defaultView);
+		return $this->view($view, $defaultView, array('widget' => $this));
+	}
+
+	/**
+	 * REturn Done Message
+	 * @return View
+	 */
+	public function getDoneMessage()
+	{
 		if($this->isDone())
 		{
-			$view = $this->getViewName($this->getConfig('view.thankyou', $defaultView));
+			$view = $this->getConfig('view.done', $this->getViewName('widgets.survey.partial.done'));
+			return $this->view($view, null, array('widget' => $this));
 		}
-		return $this->view($view, $defaultView, array('widget' => $this));
+		if($this->isFinish())
+		{
+			$view = $this->getConfig('view.done', $this->getViewName('widgets.survey.partial.finish'));
+			return $this->view($view, null, array('widget' => $this));
+		}
 	}
 
 	/**
@@ -401,9 +509,11 @@ class Survey extends Widget implements FormInterface
 			\DB::commit();
 			$this->widget()->request()->session()->forget('surveyRequest');
 			$this->widget()->request()->session()->forget('surveyPage');
+			$this->widget()->request()->session()->flash('surveyFinish', true);
+			$this->widget()->request()->session()->flash('surveyFinish' . $this->getSurveyId(), true);
 			$this->widget()->request()->session()->put('surveyDone', true);
 			$this->widget()->request()->session()->put('surveyDone' . $this->getSurveyId(), true);
-			$this->fireEvent('done');
+			$this->fireEvent('finish');
 			return redirect($this->getDoneUrl());
 		}
 		else
@@ -438,6 +548,25 @@ class Survey extends Widget implements FormInterface
 	}
 
 	/**
+	 * Return this survey URL
+	 * @return string
+	 */
+	public function getSurveyResultsUrl($survey = null)
+	{
+		$config = [
+			'route' => [
+				'name' => 'Module',
+				'module' => 'surveys-results'
+			],
+		];
+		if($survey instanceof ModelSurveyInterface)
+		{
+			$config['route'][$this->getRequestIndex()] = $survey->id();
+		}
+		return $this->getUrl(null, $config);
+	}
+
+	/**
 	 * REturn the REquest Iondex
 	 * @return integer
 	 */
@@ -447,11 +576,24 @@ class Survey extends Widget implements FormInterface
 	}
 
 	/**
-	 * Check if survey isDone
+	 * Check if survey was made already
 	 */
 	public function isDone()
 	{
 		if($this->widget()->request()->session()->has('surveyDone'))
+		{
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Check if survey is finished already
+	 * @return boolean
+	 */
+	public function isFinish()
+	{
+		if($this->widget()->request()->session()->has('surveyFinish'))
 		{
 			return true;
 		}
@@ -503,6 +645,17 @@ class Survey extends Widget implements FormInterface
 										$this->widget()->request()->session()->put('survey_form_' . $survey->id() . '_' . $question->id() . '_' . $answer->id(), $element->value());
 										$validators = $validators->merge($element->validations()->get('validators'));
 										$validatorsMessages = $validatorsMessages->merge($element->validations()->get('messages'));
+									}
+								}
+							}
+							else
+							{
+								if($this->hasResult())
+								{
+									$resultAnswer = $this->resultAnswers->get($question->id() . '_' . $answer->id());
+									if(!empty($resultAnswer))
+									{
+										$element->setValue($resultAnswer->getAnswer());
 									}
 								}
 							}
@@ -603,16 +756,6 @@ class Survey extends Widget implements FormInterface
 		$element = new $class($index, $config, $this, $tab, $fieldset, $this->widget()->request(), $this->crudAction());
 		return $element;
 	}
-
-
-	/**
-	 * Return the Done Message
-	 */
-	public function getDoneMessage()
-	{
-		return $this->getConfig('message.done', 'Thank you for completing the survey!');
-	}
-
 
 	/**
 	 * REturn SurveyData

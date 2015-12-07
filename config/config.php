@@ -6,6 +6,9 @@ return [
 			'survey' => [
 				'class' => \Claremontdesign\Cdsurvey\Widgets\WidgetTypes\Survey::class
 			],
+			'surveyAnswer' => [
+				'class' => \Claremontdesign\Cdsurvey\Widgets\WidgetTypes\SurveyAnswer::class
+			],
 		],
 	],
 	'controllers' => [
@@ -70,7 +73,7 @@ return [
 					'fillable' => ['question_id', 'answer_id', 'answer', 'result_id'],
 				],
 				'repository' => [
-					'class' => Claremontdesign\Cdsurvey\Model\Repository\ResultAnswer::class
+					'class' => Claremontdesign\Cdsurvey\Model\Repository\ResultAnswers::class
 				]
 			],
 			'questions' => [

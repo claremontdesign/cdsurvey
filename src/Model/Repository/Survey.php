@@ -73,6 +73,7 @@ class Survey extends Repository implements RepositoryModuleInterface
 		$filters = [
 			$this->_table() . '.status' => 1
 		];
+		$sort = [$this->_table() . '.' . $this->_primaryKey() => 'DESC'];
 		return $this->_casts($this->repo->setDebug(false)->getAll($this->_columns(), $filters, $sort, $this->_joins(), $paginate, $options));
 	}
 

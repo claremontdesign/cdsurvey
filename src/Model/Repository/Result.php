@@ -16,6 +16,7 @@ namespace Claremontdesign\Cdsurvey\Model\Repository;
  * @package Cdsurvey
  */
 use Claremontdesign\Cdbase\Model\Repository\Repository;
+use Claremontdesign\Cdsurvey\Model\Survey as ModelSurvey;
 use Claremontdesign\Cdsurvey\Model\Result as Model;
 
 class Result extends Repository
@@ -26,10 +27,11 @@ class Result extends Repository
 	 * @param string $id
 	 * @return Model
 	 */
-	public function byId($id)
+	public function byId(ModelSurvey $survey, $id)
 	{
 		$filters = [
-			$this->_table() . '.' . $this->_primaryKey() => $id
+			$this->_table() . '.' . $this->_primaryKey() => $id,
+			$this->_table() . '.' . 'survey_id' => $survey->id(),
 		];
 		return $this->_cast($this->repo->setDebug(false)->getAll($this->_columns(), $filters, [], $this->_joins(), false, [])->first());
 	}

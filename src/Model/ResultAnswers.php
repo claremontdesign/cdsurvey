@@ -66,6 +66,31 @@ class ResultAnswers extends Model implements WidgetModelInterface, FilterableInt
 		return $this->belongsTo(cd_config('database.surveys.result.model.class'));
 	}
 
+	/**
+	 * Each result has one answer to each answerable field
+	 */
+	public function answer()
+	{
+		return $this->belongsTo(cd_config('database.surveys.answer.model.class'));
+	}
+
+	/**
+	 * Each result has one question
+	 */
+	public function question()
+	{
+		return $this->belongsTo(cd_config('database.surveys.questions.model.class'));
+	}
+
+	/**
+	 * REturn the Answer
+	 * @return type
+	 */
+	public function getAnswer()
+	{
+		return $this->answer;
+	}
+
 	// <editor-fold defaultstate="collapsed" desc="WIDGET">
 	/**
 	 * Check widget access

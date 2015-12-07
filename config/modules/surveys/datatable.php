@@ -87,6 +87,19 @@ return [
 							]
 						],
 					],
+					'results' => [
+						'enable' => true,
+						'url' => [
+							'route' => [
+								'name' => 'Module',
+								'module' => 'surveys-results',
+								'action' => 'index',
+								'record' => function(){
+							return \Route::input('record');
+								}
+							]
+						],
+					],
 					'update' => [
 						'enable' => true,
 					],
@@ -103,12 +116,26 @@ return [
 			 * Columnnable, Attributable, Uitable, Htmlable
 			 */
 			'columns' => [
+				'results' => [
+					/**
+					 * The name of DB tableColumn, if joint tables,
+					 * 	include the DB column prefix
+					 * default to columnIndex
+					 */
+					'index' => 'id',
+					'enable' => false,
+					'type' => 'string',
+					'attributes' => [
+						'label' => 'Result',
+					],
+				],
 				'id' => [
 					/**
 					 * The name of DB tableColumn, if joint tables,
 					 * 	include the DB column prefix
 					 * default to columnIndex
 					 */
+					'position' => 0,
 					'index' => cd_config('database.surveys.surveys.table.primary'),
 					'filter' => [
 						'enable' => true,
@@ -141,6 +168,7 @@ return [
 					],
 				],
 				'title' => [
+					'position' => 1,
 					'index' => 'title',
 					'type' => 'string',
 					'attributes' => [
@@ -176,6 +204,7 @@ return [
 					],
 				],
 				'status' => [
+					'position' => 2,
 					'index' => 'status',
 					'type' => 'enabledisable',
 					'attributes' => [
@@ -183,7 +212,7 @@ return [
 					],
 					'enable' => true,
 					'filter' => [
-						'enable' => false,
+						'enable' => true,
 						'index' => cd_config('database.surveys.surveys.table.name') . '.status'
 					],
 					'ui' => [

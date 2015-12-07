@@ -34,6 +34,23 @@ $config = [
 							],
 						],
 						'children' => [
+							'results' => [
+								'breadcrumbs' => true,
+								'title' => 'Manage Survey Results',
+								'label' => 'Results',
+								'icon' => 'fa fa-bars',
+								'access' => 'admin',
+								'enable' => true,
+								'url' => [
+									'route' => [
+										'name' => 'Module',
+										'module' => 'surveys-questions',
+										'record' => function(){
+									return \Route::input('record');
+							}
+									],
+								],
+							],
 							'questions' => [
 								'breadcrumbs' => true,
 								'title' => 'Manage Survey Questions',
@@ -251,5 +268,5 @@ $config = [
 	],
 ];
 return array_merge_recursive(
-		$config, require __DIR__ . '/../../widgets/surveyAvailable.php', require __DIR__ . '/form.php', require __DIR__ . '/datatable.php', require __DIR__ . '/questions/questions.php', require __DIR__ . '/questions/set/set.php', require __DIR__ . '/answer/answer.php', require __DIR__ . '/answer/options/options.php'
+		$config, require __DIR__ . '/../../widgets/surveyAvailable.php', require __DIR__ . '/form.php', require __DIR__ . '/datatable.php', require __DIR__ . '/questions/questions.php', require __DIR__ . '/questions/set/set.php', require __DIR__ . '/answer/answer.php', require __DIR__ . '/answer/options/options.php', require __DIR__ . '/../../modules/surveys/results/results.php', require __DIR__ . '/../../modules/surveys/results/answers/answers.php', require __DIR__ . '/../../widgets/surveyAnswer.php'
 );

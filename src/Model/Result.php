@@ -58,6 +58,11 @@ class Result extends Model implements WidgetModelInterface, FilterableInterface,
 		return $this->result_id;
 	}
 
+	public function customer()
+	{
+		return $this->belongsTo(cd_config('database.customers.model.class'));
+	}
+
 	public function survey()
 	{
 		return $this->belongsTo(cd_config('database.surveys.surveys.model.class'));

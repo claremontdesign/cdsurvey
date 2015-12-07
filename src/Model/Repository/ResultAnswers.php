@@ -16,59 +16,20 @@ namespace Claremontdesign\Cdsurvey\Model\Repository;
  * @package Cdsurvey
  */
 use Claremontdesign\Cdbase\Model\Repository\Repository;
+use Claremontdesign\Cdsurvey\Model\Result as ModelResult;
 use Claremontdesign\Cdsurvey\Model\ResultAnswers as Model;
 
 class ResultAnswers extends Repository
 {
-
 	/**
-	 * Find records by Id
-	 * @param string $id
-	 * @return Model
+	 * Answers
+	 * @param \Claremontdesign\Cdsurvey\Model\Result $result
+	 * @return Collection of Model
 	 */
-	public function byId($id)
+	public function byResult(ModelResult $result)
 	{
 		$filters = [
-			$this->_table() . '.' . $this->_primaryKey() => $id
-		];
-		return $this->_cast($this->repo->setDebug(false)->getAll($this->_columns(), $filters, [], $this->_joins(), false, [])->first());
-	}
-
-	/**
-	 * Find records by Survey
-	 * @param ModelSurvey $survey
-	 * @return Model
-	 */
-	public function bySurvey($survey)
-	{
-		$filters = [
-			$this->_table() . '.survey_id' => $survey->id()
-		];
-		return $this->_casts($this->repo->setDebug(false)->getAll($this->_columns(), $filters, [], $this->_joins(), false, []));
-	}
-
-	/**
-	 * Find records by Customer
-	 * @param ModelCustomer $customer
-	 * @return Model
-	 */
-	public function byCustomer($customer)
-	{
-		$filters = [
-			$this->_table() . '.customer_id' => $customer->id()
-		];
-		return $this->_casts($this->repo->setDebug(false)->getAll($this->_columns(), $filters, [], $this->_joins(), false, []));
-	}
-
-	/**
-	 * Find records by Question
-	 * @param ModelQuestion $question
-	 * @return Model
-	 */
-	public function byQuestion($question)
-	{
-		$filters = [
-			$this->_table() . '.question_id' => $question->id()
+			$this->_table() . '.result_id' => $result->id()
 		];
 		return $this->_casts($this->repo->setDebug(false)->getAll($this->_columns(), $filters, [], $this->_joins(), false, []));
 	}

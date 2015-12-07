@@ -96,7 +96,7 @@ class Question extends Model implements WidgetModelInterface, FilterableInterfac
 	 */
 	public function getAnswers()
 	{
-		return $this->answers()->where('status', 1)->get();
+		return $this->answers()->where('status', 1)->sort('position', 'DESC')->get();
 	}
 
 	/**
@@ -134,6 +134,12 @@ class Question extends Model implements WidgetModelInterface, FilterableInterfac
 	{
 		return $this->description;
 	}
+
+	public function position()
+	{
+		return $this->position;
+	}
+
 
 	// <editor-fold defaultstate="collapsed" desc="WIDGET">
 	/**

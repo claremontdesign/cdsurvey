@@ -35,7 +35,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 		$this->loadViewsFrom(__DIR__ . '/../resources/views', cd_survey_tag());
 
 		$this->publishes([
-			__DIR__ . '/../resources/assets' => public_path('assets/claremontdesign/cdsurvey'),
+			__DIR__ . '/../resources/assets' => public_path('assets/claremontdesign/cdbase'),
 				], 'public');
 
 		$this->publishes([
