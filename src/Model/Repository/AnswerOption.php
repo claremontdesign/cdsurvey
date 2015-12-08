@@ -35,7 +35,7 @@ class AnswerOption extends Repository
 		{
 			$filters[$this->_table() . '.status'] = 1;
 		}
-		return $this->_cast($this->repo->setDebug(false)->getAll($this->_columns(), $filters, [], $this->_joins(), false, [])->first());
+		return $this->_cast($this->repo->setDebug(false)->getAll($this->_columns(), $filters, $this->_sort(), $this->_joins(), false, [])->first());
 	}
 
 	/**
@@ -52,7 +52,7 @@ class AnswerOption extends Repository
 		{
 			$filters[$this->_table() . '.status'] = 1;
 		}
-		return $this->_casts($this->repo->setDebug(false)->getAll($this->_columns(), $filters, [], $this->_joins(), false, []));
+		return $this->_casts($this->repo->setDebug(false)->getAll($this->_columns(), $filters, $this->_sort(), $this->_joins(), false, []));
 	}
 
 	/**
@@ -95,7 +95,7 @@ class AnswerOption extends Repository
 				}
 			}
 		}
-		return $this->_casts($this->repo->setDebug($debug)->getAll($this->_columns(), $filters, $sort, $this->_joins(), $paginate, $options));
+		return $this->_casts($this->repo->setDebug($debug)->getAll($this->_columns(), $filters, $this->_sort(), $this->_joins(), $paginate, $options));
 	}
 
 	/**
@@ -124,6 +124,15 @@ class AnswerOption extends Repository
 			}
 		}
 		return $rows;
+	}
+
+	/**
+	 * Return Default Sorting
+	 * @return type
+	 */
+	protected function _sort()
+	{
+		return [$this->_table() . '.position' => 'asc'];
 	}
 
 	/**

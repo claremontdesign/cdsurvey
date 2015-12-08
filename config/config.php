@@ -44,7 +44,7 @@ return [
 				],
 				'model' => [
 					'class' => Claremontdesign\Cdsurvey\Model\Survey::class,
-					'fillable' => ['title', 'description', 'status', 'start_at', 'end_at'],
+					'fillable' => ['title', 'description', 'status', 'start_at', 'end_at', 'position'],
 				],
 				'repository' => [
 					'class' => Claremontdesign\Cdsurvey\Model\Repository\Survey::class

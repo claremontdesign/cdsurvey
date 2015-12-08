@@ -355,3 +355,12 @@ Timeline UI Base
 		border-bottom-color: #555555;
 	}
 }
+
+
+body.print-view{}
+body.print-view .survey-details{
+	margin-bottom: 20px;
+}
+body.print-view .survey-answer{
+	margin-left: 60px !important;
+}

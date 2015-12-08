@@ -31,6 +31,9 @@ return [
 			'access' => 'admin',
 			'enable' => true,
 			'type' => 'datatable',
+			'sortable' => [
+				'enable' => true
+			],
 			'messages' => [
 				'empty' => [
 					'empty' => 'No data found.',
@@ -279,7 +282,7 @@ return [
 						'label' => 'Last Update',
 					],
 					'sort' => [
-						'enable' => true,
+						'enable' => false,
 					],
 					'filter' => [
 						'enable' => true,
@@ -299,7 +302,7 @@ return [
 					/**
 					 * Default sorting
 					 */
-					'sort' => [cd_config('database.surveys.surveys.table.name') . '.' . cd_config('database.surveys.surveys.table.primary') => 'desc'],
+					'sort' => [cd_config('database.surveys.surveys.table.name') . '.position' => 'asc'],
 					/**
 					 * Records to view per page
 					 */

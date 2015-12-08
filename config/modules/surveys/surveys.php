@@ -44,10 +44,10 @@ $config = [
 								'url' => [
 									'route' => [
 										'name' => 'Module',
-										'module' => 'surveys-questions',
+										'module' => 'surveys-results',
 										'record' => function(){
-									return \Route::input('record');
-							}
+											return \Route::input('record');
+										}
 									],
 								],
 							],

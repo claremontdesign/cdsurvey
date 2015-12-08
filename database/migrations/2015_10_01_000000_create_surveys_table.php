@@ -34,6 +34,7 @@ class CreateSurveysTable extends Migration
 			$table->string('title')->nullable();
 			$table->text('description')->nullable();
 			$table->boolean('status')->nullable();
+			$table->integer('position')->nullable();
 			$table->date('start_at');
 			$table->date('end_at');
 			$table->timestamps();

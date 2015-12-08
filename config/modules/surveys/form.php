@@ -163,6 +163,19 @@ return [
 							'label' => 'Status',
 						],
 					],
+					'position' => [
+						'enable' => false,
+						'model' => [
+							'value' => [
+								'index' => 'position',
+							],
+						],
+						'type' => 'number',
+						'position' => 1,
+						'attributes' => [
+							'label' => 'Position',
+						],
+					],
 				],
 			],
 			'model' => [

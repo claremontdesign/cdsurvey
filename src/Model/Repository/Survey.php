@@ -36,7 +36,7 @@ class Survey extends Repository implements RepositoryModuleInterface
 		{
 			$filters[$this->_table() . '.status'] = 1;
 		}
-		return $this->_cast($this->repo->setDebug(false)->getAll($this->_columns(), $filters, [], $this->_joins(), false, [])->first());
+		return $this->_cast($this->repo->setDebug(false)->getAll($this->_columns(), $filters, $this->_sort(), $this->_joins(), false, [])->first());
 	}
 
 	/**
@@ -50,7 +50,7 @@ class Survey extends Repository implements RepositoryModuleInterface
 		$filters = [
 			$this->_table() . '.' . $this->_primaryKey() => $id
 		];
-		return $this->_cast($this->repo->setDebug(false)->getAll($this->_columns(), $filters, [], $this->_joins(), false, [])->first());
+		return $this->_cast($this->repo->setDebug(false)->getAll($this->_columns(), $filters, $this->_sort(), $this->_joins(), false, [])->first());
 	}
 
 	/**
@@ -65,16 +65,27 @@ class Survey extends Repository implements RepositoryModuleInterface
 	 */
 	public function getAll($columns = ['*'], $filters = [], $sort = [], $joins = [], $paginate = [], $options = [], $debug = false)
 	{
-		return $this->_casts($this->repo->setDebug($debug)->getAll($this->_columns(), $filters, $sort, $this->_joins(), $paginate, $options));
+		return $this->_casts($this->repo->setDebug($debug)->getAll($this->_columns(), $filters, $this->_sort(), $this->_joins(), $paginate, $options));
 	}
 
+	/**
+	 * Return all enabled surveys
+	 * @param type $columns
+	 * @param array $filters
+	 * @param array $sort
+	 * @param type $joins
+	 * @param type $paginate
+	 * @param type $options
+	 * @param type $debug
+	 * @return type
+	 */
 	public function getAllEnabled($columns = ['*'], $filters = [], $sort = [], $joins = [], $paginate = [], $options = [], $debug = false)
 	{
 		$filters = [
 			$this->_table() . '.status' => 1
 		];
-		$sort = [$this->_table() . '.' . $this->_primaryKey() => 'DESC'];
-		return $this->_casts($this->repo->setDebug(false)->getAll($this->_columns(), $filters, $sort, $this->_joins(), $paginate, $options));
+		$sort = [$this->_table() . '.position' => 'DESC'];
+		return $this->_casts($this->repo->setDebug(false)->getAll($this->_columns(), $filters, $this->_sort(), $this->_joins(), $paginate, $options));
 	}
 
 	/**
@@ -103,6 +114,16 @@ class Survey extends Repository implements RepositoryModuleInterface
 			}
 		}
 		return $rows;
+	}
+
+
+	/**
+	 * Return Default Sorting
+	 * @return type
+	 */
+	protected function _sort()
+	{
+		return [$this->_table() . '.position' => 'asc'];
 	}
 
 	/**

@@ -55,6 +55,26 @@ return [
 							]
 						],
 					],
+					'print' => [
+						'attributes' => [
+							'label' => 'Print View',
+						],
+						'ui' => [
+							'html' => [
+								'a' => [
+									'target' => '_blank',
+								]
+							],
+						],
+						'enable' => true,
+						'url' => [
+							'route' => [
+								'name' => 'Module',
+								'module' => 'surveys-results-answers',
+								'action' => 'print'
+							]
+						],
+					],
 				],
 			],
 			'columns' => [

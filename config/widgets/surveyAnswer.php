@@ -18,6 +18,33 @@ return [
 			'configMerge' => 'widgets.surveyAvailable',
 			'enable' => true,
 			'type' => 'surveyAnswer',
+			'toolbars' => [
+				'topright' => [
+					'print' => [
+						'attributes' => [
+							'label' => 'Print View',
+						],
+						'ui' => [
+							'html' => [
+								'a' => [
+									'target' => '_blank',
+								]
+							],
+						],
+						'enable' => true,
+						'url' => [
+							'route' => [
+								'static' => true,
+								'name' => 'Module',
+								'module' => 'surveys-results-answers',
+								'action' => 'print',
+								'record' => function(){ return app('cdbackend')->routeParam('record');},
+								'paramOne' => function(){ return app('cdbackend')->routeParam('paramOne');}
+							]
+						],
+					],
+				],
+			],
 		],
 	],
 ];

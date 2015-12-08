@@ -81,29 +81,18 @@ $config = [
 			 * Actions
 			 */
 			'actions' => [
-				/**
-				 * All module properties can be inherited by an anction
-				 * AttributableInterface, ConfigurableInterface, AccessibleInterface, Viewable
-				 */
 				'index' => [
-					/**
-					 * Enable/Disable this action
-					 */
 					'enable' => true,
-					/**
-					 * View configuration for this actionIndex
-					 */
 					'view' => [
-						/**
-						 * The viewTemplate to use.
-						 * should be the final template name e.g. cd_cdbase_view_name('view.file')
-						 */
 						'template' => false
 					],
-					/**
-					 * Dynamic Contents to be displayed on this /moduleIndex/actionIndex
-					 * Array of widgetIndex
-					 */
+					'widgets' => ['surveyAnswer']
+				],
+				'print' => [
+					'enable' => true,
+					'view' => [
+						'template' => false
+					],
 					'widgets' => ['surveyAnswer']
 				],
 			],

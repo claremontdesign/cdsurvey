@@ -119,6 +119,11 @@ class Survey extends Widget implements FormInterface
 		return $this;
 	}
 
+	public function getAccess()
+	{
+		return $this->getConfig('access', 'guest');
+	}
+
 	/**
 	 * Retur the Survey Id
 	 * @return integer
@@ -135,6 +140,15 @@ class Survey extends Widget implements FormInterface
 	public function useSet()
 	{
 		return $this->getConfig('questions.set', false);
+	}
+
+	/**
+	 * If to display a printable view
+	 * @return boolean
+	 */
+	public function isPrintView()
+	{
+		return $this->widget()->route()->parameter('action') == 'print';
 	}
 
 	// <editor-fold defaultstate="collapsed" desc="DATA">
@@ -406,6 +420,7 @@ class Survey extends Widget implements FormInterface
 	{
 		if(!$this->prepared)
 		{
+			$this->_initWidget();
 			$this->processQuestions();
 		}
 		$this->prepared = true;
@@ -431,6 +446,10 @@ class Survey extends Widget implements FormInterface
 	 */
 	public function crudAction()
 	{
+		if($this->isPrintView())
+		{
+			return 'view';
+		}
 		return 'create';
 	}
 

@@ -31,6 +31,9 @@ return [
 			'access' => 'admin',
 			'enable' => true,
 			'type' => 'datatable',
+			'sortable' => [
+				'enable' => true
+			],
 			'messages' => [
 				'empty' => [
 					'empty' => 'No Questions found.',
@@ -135,7 +138,7 @@ return [
 					 * 	include the DB column prefix
 					 * default to columnIndex
 					 */
-					'enable' => true,
+					'enable' => false,
 					'index' => cd_config('database.surveys.questions.table.primary'),
 					'filter' => [
 						'enable' => true,
@@ -175,7 +178,7 @@ return [
 					],
 					'enable' => true,
 					'filter' => [
-						'enable' => false,
+						'enable' => true,
 						'index' => cd_config('database.surveys.questions.table.name') . '.status'
 					],
 					'ui' => [

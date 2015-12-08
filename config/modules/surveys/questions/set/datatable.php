@@ -31,6 +31,9 @@ return [
 			'access' => 'admin',
 			'enable' => true,
 			'type' => 'datatable',
+			'sortable' => [
+				'enable' => true
+			],
 			'messages' => [
 				'empty' => [
 					'empty' => 'No Question Set found.',

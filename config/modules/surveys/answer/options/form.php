@@ -163,7 +163,7 @@ return [
 						],
 					],
 					'position' => [
-						'enable' => true,
+						'enable' => false,
 						'model' => [
 							'value' => [
 								'index' => 'position',
