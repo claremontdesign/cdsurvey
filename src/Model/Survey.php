@@ -130,7 +130,7 @@ class Survey extends Model implements WidgetModelInterface, FilterableInterface,
 	 * @param  array $assocArray [description]
 	 * @return array
 	 */
-	public function fixValueToColumnValue($assocArray)
+	public function fixValueToColumnValue($assocArray, $mode = null)
 	{
 		if(empty($assocArray['start_at']))
 		{

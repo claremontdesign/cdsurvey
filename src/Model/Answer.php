@@ -191,7 +191,7 @@ class Answer extends Model implements ActionModelInterface, WidgetModelInterface
 	 * @param  array $assocArray [description]
 	 * @return array
 	 */
-	public function fixValueToColumnValue($assocArray)
+	public function fixValueToColumnValue($assocArray, $mode = null)
 	{
 		if(!empty($assocArray['survey_id']))
 		{

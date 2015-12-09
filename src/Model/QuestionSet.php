@@ -136,7 +136,7 @@ class QuestionSet extends Model implements WidgetModelInterface, FilterableInter
 	 * @param  array $assocArray [description]
 	 * @return array
 	 */
-	public function fixValueToColumnValue($assocArray)
+	public function fixValueToColumnValue($assocArray, $mode = null)
 	{
 		return parent::fixValueToColumnValue($assocArray);
 	}

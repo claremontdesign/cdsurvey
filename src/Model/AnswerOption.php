@@ -134,7 +134,7 @@ class AnswerOption extends Model implements WidgetModelInterface, FilterableInte
 	 * @param  array $assocArray [description]
 	 * @return array
 	 */
-	public function fixValueToColumnValue($assocArray)
+	public function fixValueToColumnValue($assocArray, $mode = null)
 	{
 		return parent::fixValueToColumnValue($assocArray);
 	}
