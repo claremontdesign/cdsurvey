@@ -114,6 +114,14 @@ class Question extends Model implements WidgetModelInterface, FilterableInterfac
 	}
 
 	/**
+	 * Return the title
+	 */
+	public function title()
+	{
+		return $this->question();
+	}
+
+	/**
 	 * The Question
 	 */
 	public function question()

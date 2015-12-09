@@ -103,6 +103,19 @@ return [
 							]
 						],
 					],
+					'start' => [
+						'attributes' => [
+							'label' => 'Take the Survey',
+						],
+						'enable' => true,
+						'url' => [
+							'route' => [
+								'name' => 'Module',
+								'module' => 'surveys',
+								'action' => 'customer'
+							]
+						],
+					],
 					'update' => [
 						'enable' => true,
 					],
