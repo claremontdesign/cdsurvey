@@ -40,6 +40,20 @@ return [
 					'notfound' => 'Cannot find the question you are looking for. Kindly try again.'
 				],
 			],
+			'exportable' => [
+				'enable' => true,
+				'attributes' => [
+					'label' => 'Download/Export',
+				],
+				'format' => [
+					'csv' => [
+						'enable' => true,
+						'attributes' => [
+							'label' => 'Export to CSV',
+						],
+					]
+				],
+			],
 			'config' => [
 				'attributes' => [
 					'recordName' => [

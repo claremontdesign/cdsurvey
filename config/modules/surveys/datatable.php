@@ -34,6 +34,20 @@ return [
 			'sortable' => [
 				'enable' => true
 			],
+			'exportable' => [
+				'enable' => true,
+				'attributes' => [
+					'label' => 'Download/Export',
+				],
+				'format' => [
+					'csv' => [
+						'enable' => true,
+						'attributes' => [
+							'label' => 'Export to CSV',
+						],
+					]
+				],
+			],
 			'messages' => [
 				'empty' => [
 					'empty' => 'No data found.',
@@ -98,7 +112,7 @@ return [
 								'module' => 'surveys-results',
 								'action' => 'index',
 								'record' => function(){
-							return \Route::input('record');
+									return \Route::input('record');
 								}
 							]
 						],
